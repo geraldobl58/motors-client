@@ -19,4 +19,20 @@ describe('<Logo />', () => {
       color: '#34ABD0'
     })
   })
+
+  it('should render a bigger logo', () => {
+    renderWithTheme(<Logo />)
+
+    expect(screen.getByLabelText(/motors/i).parentElement).toHaveStyle({
+      width: '11rem'
+    })
+  })
+
+  it('should render a normal logo when size is default', () => {
+    renderWithTheme(<Logo size="large" />)
+
+    expect(screen.getByLabelText(/motors/i).parentElement).toHaveStyle({
+      width: '20rem'
+    })
+  })
 })
