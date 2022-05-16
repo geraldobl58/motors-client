@@ -2,7 +2,9 @@ import styled, { css, DefaultTheme } from 'styled-components'
 
 import { ButtonProps } from '.'
 
-type WrapperProps = Pick<ButtonProps, 'size' | 'fullwidth'>
+type WrapperProps = {
+  hasIcon: boolean
+} & Pick<ButtonProps, 'size' | 'fullwidth'>
 
 const wrapperModifiers = {
   small: (theme: DefaultTheme) => css`
@@ -21,13 +23,28 @@ const wrapperModifiers = {
   `,
   fullwidth: () => css`
     width: 100%;
+  `,
+  withIcon: (theme: DefaultTheme) => css`
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 2.5rem;
+
+      & + span {
+        margin-left: ${theme.spacings.xxsmall};
+      }
+    }
   `
 }
 
 export const Wrapper = styled.button<WrapperProps>`
-  ${({ theme, size, fullwidth }) => css`
+  ${({ theme, size, fullwidth, hasIcon }) => css`
     color: ${theme.colors.white};
     background: linear-gradient(180deg, #34abd0 0%, #2d8dab 50%);
+
+    cursor: pointer;
 
     border: 0;
     border-radius: ${theme.border.radius};
@@ -36,5 +53,6 @@ export const Wrapper = styled.button<WrapperProps>`
 
     ${!!size && wrapperModifiers[size](theme)}
     ${!!fullwidth && wrapperModifiers.fullwidth()}
+    ${!!hasIcon && wrapperModifiers.withIcon(theme)}
   `}
 `
