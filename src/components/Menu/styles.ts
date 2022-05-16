@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
-export const Wrapper = styled.nav`
+export const Wrapper = styled.menu`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
@@ -37,5 +37,15 @@ export const IconWrapper = styled.div`
     height: 2.4rem;
     cursor: pointer;
     color: ${theme.colors.primary};
+  `}
+`
+
+type MenuFullProps = {
+  isOpen: boolean
+}
+
+export const MenuFull = styled.nav<MenuFullProps>`
+  ${({ isOpen }) => css`
+    opacity: ${isOpen ? 1 : 0};
   `}
 `
