@@ -32,4 +32,12 @@ describe('<Button />', () => {
       'font-size': '1.6rem'
     })
   })
+
+  it('should render a fullwidth version ', () => {
+    renderWithTheme(<Button fullwidth>Ver Mais</Button>)
+
+    expect(screen.getByRole('button', { name: /Ver Mais/i })).toHaveStyle({
+      width: '100%'
+    })
+  })
 })
