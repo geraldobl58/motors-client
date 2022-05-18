@@ -35,6 +35,7 @@ export const MenuNav = styled.div``
 
 export const MenuLink = styled.a`
   ${({ theme }) => css`
+    color: ${theme.colors.primary};
     position: relative;
     font-size: ${theme.font.sizes.medium};
     margin: 0.3rem ${theme.spacings.small} 0;
