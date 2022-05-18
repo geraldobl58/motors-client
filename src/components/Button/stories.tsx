@@ -28,3 +28,12 @@ withIcon.args = {
   children: 'Ver Mais',
   icon: <VehicleCarProfileLtr />
 }
+
+export const hasLink: Story = (args) => <Button {...args} />
+
+hasLink.args = {
+  size: 'large',
+  children: 'Ver Mais',
+  as: 'a',
+  href: '/link'
+}
