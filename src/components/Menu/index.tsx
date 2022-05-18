@@ -29,6 +29,13 @@ const Menu = () => {
       </S.MenuGroup>
       <S.MenuFull aria-hidden={!isOpen} isOpen={isOpen}>
         <CloseIcon aria-label="Close Menu" onClick={() => setIsOpen(false)} />
+        <S.MenuNav>
+          <S.MenuLink href="#">Home</S.MenuLink>
+          <S.MenuLink href="#">Sobre</S.MenuLink>
+          <S.MenuLink href="#">Veículos</S.MenuLink>
+          <S.MenuLink href="#">Faq</S.MenuLink>
+          <S.MenuLink href="#">Contato</S.MenuLink>
+        </S.MenuNav>
       </S.MenuFull>
     </S.Wrapper>
   )
