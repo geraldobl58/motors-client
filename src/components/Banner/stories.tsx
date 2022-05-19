@@ -11,6 +11,9 @@ export default {
     subtitle: '<p>V6 TURBODIESEL</p>',
     buttonLabel: 'Ver Mais',
     buttonLink: '/vehicles/nova-ranger'
+  },
+  parameters: {
+    layout: 'fullscreen'
   }
 } as Meta
 
