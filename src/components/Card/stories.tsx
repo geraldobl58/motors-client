@@ -14,6 +14,9 @@ export default {
     year: '2021/2022',
     mileage: 14500,
     location: 'São Paulo - SP'
+  },
+  argTypes: {
+    ribbon: { type: 'string' }
   }
 } as Meta
 
@@ -22,3 +25,15 @@ export const Basic: Story<CardProps> = (args) => (
     <Card {...args} />
   </div>
 )
+
+export const WithRibbon: Story<CardProps> = (args) => (
+  <div style={{ width: '30rem' }}>
+    <Card {...args} />
+  </div>
+)
+
+WithRibbon.args = {
+  ribbon: 'Lançamento',
+  ribbonSize: 'small',
+  ribbonColor: 'hot'
+}

@@ -41,4 +41,21 @@ describe('<Card />', () => {
     expect(screen.getByText(props.mileage)).toBeInTheDocument()
     expect(screen.getByText(props.location)).toBeInTheDocument()
   })
+
+  it('should render Ribbon', () => {
+    renderWithTheme(
+      <Card
+        {...props}
+        ribbon="My Ribbon"
+        ribbonColor="hot"
+        ribbonSize="small"
+      />
+    )
+
+    const ribbon = screen.getByText(/my ribbon/i)
+
+    expect(ribbon).toHaveStyle({ backgroundColor: '#CC2828' })
+    expect(ribbon).toHaveStyle({ height: '2.6rem', fontSize: '1.2rem' })
+    expect(ribbon).toBeInTheDocument()
+  })
 })

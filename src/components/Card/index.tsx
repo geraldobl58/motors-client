@@ -1,4 +1,5 @@
 import Button from 'components/Button'
+import Ribbon, { RibbonColors, RibbonSizes } from 'components/Ribbon'
 
 import { VehicleCarProfileLtr } from '@styled-icons/fluentui-system-regular/VehicleCarProfileLtr'
 import { Calendar } from '@styled-icons/boxicons-regular/Calendar'
@@ -15,6 +16,9 @@ export type CardProps = {
   year: string
   mileage: number
   location: string
+  ribbon?: React.ReactNode
+  ribbonColor?: RibbonColors
+  ribbonSize?: RibbonSizes
 }
 
 const Card = ({
@@ -25,9 +29,17 @@ const Card = ({
   price,
   year,
   mileage,
-  location
+  location,
+  ribbon,
+  ribbonColor = 'hot',
+  ribbonSize = 'small'
 }: CardProps) => (
   <S.Wrapper>
+    {!!ribbon && (
+      <Ribbon color={ribbonColor} size={ribbonSize}>
+        {ribbon}
+      </Ribbon>
+    )}
     <S.ImageBox>
       <img src={img} alt={title} />
     </S.ImageBox>
