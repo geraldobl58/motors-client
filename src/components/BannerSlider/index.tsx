@@ -9,7 +9,7 @@ export type BannerSlideProps = {
 
 const settings: SliderSettings = {
   dots: true,
-  arrows: true,
+  arrows: false,
   infinite: false
 }
 
