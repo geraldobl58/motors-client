@@ -82,5 +82,7 @@ export default {
 } as Meta
 
 export const Basic: Story<CardProps[]> = (args) => (
-  <CardSlider items={args} {...args} />
+  <div style={{ maxWidth: '130rem', margin: '0 auto' }}>
+    <CardSlider items={args} {...args} />
+  </div>
 )

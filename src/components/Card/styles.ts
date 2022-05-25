@@ -53,9 +53,7 @@ export const Content = styled.div`
   `}
 `
 
-export const Info = styled.div`
-  max-width: calc(100% - 2.5rem);
-`
+export const Info = styled.div``
 
 export const Title = styled.h3`
   ${({ theme }) => css`

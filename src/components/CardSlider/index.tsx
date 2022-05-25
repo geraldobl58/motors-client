@@ -6,7 +6,7 @@ import { ArrowForwardIos as ArrowRight } from '@styled-icons/material-outlined/A
 
 import * as S from './styles'
 
-type CardSliderProps = {
+export type CardSliderProps = {
   items: CardProps[]
   color?: 'primary' | 'secondary'
 }
@@ -49,7 +49,7 @@ const settings: SliderSettings = {
   prevArrow: <ArrowLeft aria-label="anterior" />
 }
 
-const CardSlider = ({ items, color = 'primary' }: CardSliderProps) => (
+const CardSlider = ({ items, color = 'secondary' }: CardSliderProps) => (
   <S.Wrapper color={color}>
     <Slider settings={settings}>
       {items.map((item, index) => (
