@@ -29,28 +29,38 @@ const Home = ({
 
     <BannerSlider items={banners} />
 
-    <Container>
-      <Heading lineLeft>Recomendados para você</Heading>
-      <span>Realize seu sonho e encontre seu veículo ideal</span>
-      <CardSlider items={recommended} />
-    </Container>
+    <S.Sections>
+      <Container>
+        <Heading lineLeft>Recomendados para você</Heading>
+        <S.Separator>
+          Realize seu sonho e encontre seu veículo ideal
+        </S.Separator>
+        <CardSlider items={recommended} />
+      </Container>
+    </S.Sections>
 
-    <Container>
-      <Heading lineLeft>Carros mais buscados</Heading>
-      <span>Confira aqui os carros mais buscados</span>
-      <CardSlider items={mostSearchedCars} />
-    </Container>
+    <S.Sections>
+      <Container>
+        <Heading lineLeft>Carros mais buscados</Heading>
+        <S.Separator>Confira aqui os carros mais buscados</S.Separator>
+        <CardSlider items={mostSearchedCars} />
+      </Container>
+    </S.Sections>
 
-    <Container>
-      <Heading lineLeft>Os mais vendidos</Heading>
-      <span>Confira os mais vendidos</span>
-      <CardSlider items={bestSellersCars} />
-    </Container>
+    <S.Sections>
+      <Container>
+        <Heading lineLeft>Os mais vendidos</Heading>
+        <S.Separator>Confira os mais vendidos</S.Separator>
+        <CardSlider items={bestSellersCars} />
+      </Container>
+    </S.Sections>
 
-    <Container>
-      <Heading lineLeft>Notícias</Heading>
-      <span>Confira as últimas notícias</span>
-    </Container>
+    <S.Sections>
+      <Container>
+        <Heading lineLeft>Notícias</Heading>
+        <S.Separator>Confira as últimas notícias</S.Separator>
+      </Container>
+    </S.Sections>
   </section>
 )
 
