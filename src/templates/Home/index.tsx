@@ -1,9 +1,9 @@
 import { BannerProps } from 'components/Banner'
-import BannerSlider from 'components/BannerSlider'
 import { CardProps } from 'components/Card'
-import CardSlider from 'components/CardSlider'
 import { Container } from 'components/Container'
 
+import BannerSlider from 'components/BannerSlider'
+import CardSlider from 'components/CardSlider'
 import Heading from 'components/Heading'
 import Menu from 'components/Menu'
 
