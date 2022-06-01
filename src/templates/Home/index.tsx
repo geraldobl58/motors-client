@@ -7,6 +7,7 @@ import Menu from 'components/Menu'
 
 import * as S from './styles'
 import Showcase from 'components/Showcase'
+import Base from 'templates/Base'
 
 export type HomeTemplateProps = {
   banners: BannerProps[]
@@ -21,11 +22,7 @@ const Home = ({
   mostSearchedCars,
   bestSellersCars
 }: HomeTemplateProps) => (
-  <section>
-    <Container>
-      <Menu />
-    </Container>
-
+  <Base>
     <BannerSlider items={banners} />
 
     <S.Sections>
@@ -55,7 +52,7 @@ const Home = ({
     <S.Sections>
       <Showcase title="Notícias" subtitle="Confira as últimas notícias" />
     </S.Sections>
-  </section>
+  </Base>
 )
 
 export default Home
