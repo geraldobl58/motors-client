@@ -3,8 +3,6 @@ import { CardProps } from 'components/Card'
 import { Container } from 'components/Container'
 
 import BannerSlider from 'components/BannerSlider'
-import CardSlider from 'components/CardSlider'
-import Heading from 'components/Heading'
 import Menu from 'components/Menu'
 
 import * as S from './styles'
