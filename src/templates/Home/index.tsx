@@ -8,6 +8,7 @@ import Heading from 'components/Heading'
 import Menu from 'components/Menu'
 
 import * as S from './styles'
+import Showcase from 'components/Showcase'
 
 export type HomeTemplateProps = {
   banners: BannerProps[]
@@ -30,36 +31,31 @@ const Home = ({
     <BannerSlider items={banners} />
 
     <S.Sections>
-      <Container>
-        <Heading lineLeft>Recomendados para você</Heading>
-        <S.Separator>
-          Realize seu sonho e encontre seu veículo ideal
-        </S.Separator>
-        <CardSlider items={recommended} />
-      </Container>
+      <Showcase
+        title="Recomendados para você"
+        subtitle="Realize seu sonho e encontre seu veículo ideal"
+        cards={recommended}
+      />
     </S.Sections>
 
     <S.Sections>
-      <Container>
-        <Heading lineLeft>Carros mais buscados</Heading>
-        <S.Separator>Confira aqui os carros mais buscados</S.Separator>
-        <CardSlider items={mostSearchedCars} />
-      </Container>
+      <Showcase
+        title="Carros mais buscados"
+        subtitle="Confira aqui os carros mais buscados"
+        cards={mostSearchedCars}
+      />
     </S.Sections>
 
     <S.Sections>
-      <Container>
-        <Heading lineLeft>Os mais vendidos</Heading>
-        <S.Separator>Confira os mais vendidos</S.Separator>
-        <CardSlider items={bestSellersCars} />
-      </Container>
+      <Showcase
+        title="Os mais vendidos"
+        subtitle="Confira os mais vendidos"
+        cards={bestSellersCars}
+      />
     </S.Sections>
 
     <S.Sections>
-      <Container>
-        <Heading lineLeft>Notícias</Heading>
-        <S.Separator>Confira as últimas notícias</S.Separator>
-      </Container>
+      <Showcase title="Notícias" subtitle="Confira as últimas notícias" />
     </S.Sections>
   </section>
 )
