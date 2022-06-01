@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SingleInfo /> should render single information 1`] = `
+.c2 {
+  color: #363636;
+  font-size: 2.0rem;
+}
+
+.c0 {
+  padding: 2.4rem 4.8rem;
+  border-radius: 0.4rem;
+  background: #FAFAFA;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c4 {
+  display: block;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 4.0rem;
+}
+
+.c5 {
+  margin-top: 4.0rem;
+}
+
+@media (min-width:768px) {
+  .c2 {
+    font-size: 2.8rem;
+  }
+}
+
+<div
+  class="c0"
+>
+  <div
+    class="c1"
+  >
+    <h2
+      class="c2"
+      color="primary"
+    >
+      Territory
+    </h2>
+    <p
+      class=""
+    >
+      198900
+    </p>
+  </div>
+  <div
+    class="c3"
+  >
+    <div
+      class="c4"
+    >
+      <h5
+        class=""
+      >
+        Ano
+      </h5>
+      <h3
+        class=""
+      >
+        2022
+      </h3>
+    </div>
+    <div
+      class="c4"
+    >
+      <h5
+        class=""
+      >
+        KM
+      </h5>
+      <h3
+        class=""
+      >
+        2500
+      </h3>
+    </div>
+    <div
+      class="c4"
+    >
+      <h5
+        class=""
+      >
+        Combustível
+      </h5>
+      <h3
+        class=""
+      >
+        Gasolina
+      </h3>
+    </div>
+    <div
+      class="c4"
+    >
+      <h5
+        class=""
+      >
+        Câmbio
+      </h5>
+      <h3
+        class=""
+      >
+        Manual
+      </h3>
+    </div>
+    <div
+      class="c4"
+    >
+      <h5
+        class=""
+      >
+        Cor
+      </h5>
+      <h3
+        class=""
+      >
+        Branco
+      </h3>
+    </div>
+    <div
+      class="c4"
+    >
+      <h5
+        class=""
+      >
+        Final de placa
+      </h5>
+      <h3
+        class=""
+      >
+        5
+      </h3>
+    </div>
+  </div>
+  <div
+    class="c5"
+  >
+    <h5
+      class=""
+    >
+      Sobre este carro
+    </h5>
+    <p
+      class=""
+    >
+      Mussum Ipsum, cacilds vidis litro abertis.
+    </p>
+  </div>
+</div>
+`;
