@@ -5,7 +5,7 @@ import SingleInfo from '.'
 
 const props = {
   title: 'Territory',
-  year: 2022,
+  year: '2020/2021',
   milage: 2500,
   fuel: 'Gasolina',
   exchange: 'Manual',
@@ -22,8 +22,6 @@ describe('<SingleInfo />', () => {
     expect(
       screen.getByRole('heading', { name: /territory/i })
     ).toBeInTheDocument()
-
-    expect(screen.getByText(/2022/i)).toBeInTheDocument()
 
     expect(screen.getByText(/2500/i)).toBeInTheDocument()
 

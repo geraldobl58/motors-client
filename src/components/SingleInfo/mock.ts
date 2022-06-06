@@ -1,7 +1,7 @@
 export default {
   title: 'Territory',
-  year: 2022,
-  milage: 2500,
+  year: '2020/2021',
+  milage: 25000,
   fuel: 'Gasolina',
   exchange: 'Manual',
   color: 'Branco',

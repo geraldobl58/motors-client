@@ -1,10 +1,13 @@
 import Heading from 'components/Heading'
 
+import formattedNumber from 'utils/format-number'
+import formatPrice from 'utils/format-price'
+
 import * as S from './styles'
 
 export type SingleInfoProps = {
   title: string
-  year: number
+  year: string
   milage: number
   fuel: string
   exchange: string
@@ -28,7 +31,7 @@ const SingleInfo = ({
   <S.Wrapper>
     <S.Header>
       <Heading color="primary">{title}</Heading>
-      <S.Price>{price}</S.Price>
+      <S.Price>{formatPrice(price)}</S.Price>
     </S.Header>
 
     <S.Inset>
@@ -38,7 +41,7 @@ const SingleInfo = ({
       </S.Container>
       <S.Container>
         <S.Title>KM</S.Title>
-        <S.Content>{milage}</S.Content>
+        <S.Content>{formattedNumber(milage)}</S.Content>
       </S.Container>
       <S.Container>
         <S.Title>Combustível</S.Title>
