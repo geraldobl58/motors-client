@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import Slider, { SliderSettings } from 'components/Slider'
 
@@ -54,6 +54,15 @@ const settings: SliderSettings = {
 
 const Gallery = ({ items }: GalleryProps) => {
   const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    const handleKeyUp = ({ key }: KeyboardEvent) => {
+      key === 'Escape' && setIsOpen(false)
+    }
+    window.addEventListener('keyup', handleKeyUp)
+
+    return () => window.removeEventListener('keyup', handleKeyUp)
+  }, [])
 
   return (
     <S.Wrapper>
