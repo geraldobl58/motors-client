@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import Slider, { SliderSettings } from 'components/Slider'
 
 import { ArrowBackIos as ArrowLeft } from '@styled-icons/material-outlined/ArrowBackIos'
@@ -16,7 +18,7 @@ export type GalleryProps = {
 
 const settings: SliderSettings = {
   arrows: true,
-  slidesToShow: 4,
+  slidesToShow: 3,
   infinite: false,
   lazyLoad: 'ondemand',
   responsive: [
@@ -49,19 +51,32 @@ const settings: SliderSettings = {
   prevArrow: <ArrowLeft aria-label="previous image" />
 }
 
-const Gallery = ({ items }: GalleryProps) => (
-  <S.Wrapper>
-    <Slider settings={settings}>
-      {items.map((item, index) => (
-        <img
-          role="button"
-          key={`thumb-${index}`}
-          src={item.src}
-          alt={`Thumb - ${item.label}`}
-        />
-      ))}
-    </Slider>
-  </S.Wrapper>
-)
+const Gallery = ({ items }: GalleryProps) => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <S.Wrapper>
+      <Slider settings={settings}>
+        {items.map((item, index) => (
+          <img
+            role="button"
+            key={`thumb-${index}`}
+            src={item.src}
+            alt={`Thumb - ${item.label}`}
+            onClick={() => {
+              setIsOpen(true)
+            }}
+          />
+        ))}
+      </Slider>
+
+      <S.Modal
+        isOpen={isOpen}
+        aria-label="modal"
+        aria-hidden={!isOpen}
+      ></S.Modal>
+    </S.Wrapper>
+  )
+}
 
 export default Gallery
