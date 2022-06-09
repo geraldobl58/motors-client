@@ -17,4 +17,12 @@ export const Info = styled.div`
   `}
 `
 
-export const Sections = styled.div``
+export const Separator = styled.div`
+  ${({ theme }) => css`
+    margin-top: ${theme.spacings.xxlarge};
+  `}
+`
+
+export const Sections = styled.div`
+  box-shadow: 0px 5px 10px #ccc;
+`

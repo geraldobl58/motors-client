@@ -27,7 +27,12 @@ export async function getStaticProps() {
         price: 198900,
         description: 'Mussum Ipsum, cacilds vidis litro abertis.'
       },
-      gallery: galleryMock
+      gallery: galleryMock,
+      details: {
+        make: 'Ford',
+        version: '1.5 ECOBOOST GTDI GASOLINA TITANIUM',
+        location: 'São Paulo'
+      }
     }
   }
 }
