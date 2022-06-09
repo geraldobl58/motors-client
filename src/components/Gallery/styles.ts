@@ -3,6 +3,7 @@ import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
+    overflow: hidden;
     .slick-prev,
     .slick-next {
       display: block;

@@ -1,5 +1,7 @@
 import Cars, { CarsTemplateProps } from 'templates/Cars'
 
+import galleryMock from 'components/Gallery/mock'
+
 export default function Index(props: CarsTemplateProps) {
   return <Cars {...props} />
 }
@@ -24,7 +26,8 @@ export async function getStaticProps() {
         endOfPlate: 5,
         price: 198900,
         description: 'Mussum Ipsum, cacilds vidis litro abertis.'
-      }
+      },
+      gallery: galleryMock
     }
   }
 }
