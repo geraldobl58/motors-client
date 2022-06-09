@@ -1,6 +1,13 @@
 import styled, { css } from 'styled-components'
+import media from 'styled-media-query'
 
-export const Main = styled.div``
+export const Main = styled.div`
+  display: none;
+
+  ${media.greaterThan('medium')`
+    display: block;
+  `}
+`
 
 export const Info = styled.div`
   ${({ theme }) => css`
