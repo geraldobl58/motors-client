@@ -11,4 +11,20 @@ describe('<Checkbox />', () => {
     expect(screen.getByLabelText(/checkbox label/i)).toBeInTheDocument()
     expect(screen.getByText(/checkbox label/i)).toHaveAttribute('for', 'check')
   })
+
+  it('should render widhtout label', () => {
+    renderWithTheme(<Checkbox />)
+
+    expect(screen.queryByLabelText('Checkbox')).not.toBeInTheDocument()
+  })
+
+  it('should render widhtout black label', () => {
+    renderWithTheme(
+      <Checkbox label="checkbox label" labelFor="check" labelColor="black" />
+    )
+
+    expect(screen.getByText(/checkbox label/i)).toHaveStyle({
+      color: '#222222'
+    })
+  })
 })
