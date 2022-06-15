@@ -5,41 +5,51 @@ import Radio from 'components/Radio'
 
 import * as S from './styles'
 
-const ExploreSidebar = () => (
+export type ItemProps = {
+  title: string
+  name: string
+  type: string
+  fields: Field[]
+}
+
+type Field = {
+  label: string
+  name: string
+}
+
+export type ExploreSidebarProps = {
+  items: ItemProps[]
+}
+
+const ExploreSidebar = ({ items }: ExploreSidebarProps) => (
   <S.Wrapper>
-    <Heading lineBottom>Ordenar</Heading>
-    <Radio
-      id="high-to-low"
-      name="sort-by"
-      label="Maior Valor"
-      labelFor="high-to-low"
-      value="high-to-low"
-    />
+    {items.map((item) => (
+      <div key={item.title}>
+        <Heading lineBottom>{item.title}</Heading>
 
-    <Radio
-      id="low-to-high"
-      name="sort-by"
-      label="Menor Valor"
-      labelFor="low-to-high"
-      value="low-to-high"
-    />
+        {item.type === 'checkbox' &&
+          item.fields.map((field) => (
+            <Checkbox
+              key={field.name}
+              name={field.name}
+              label={field.label}
+              labelFor={field.name}
+            />
+          ))}
 
-    <Heading lineBottom>Preço</Heading>
-    <Checkbox name="under-200" label="Até 200" labelFor="under-200" />
-    <Checkbox name="under-200" label="Até 200" labelFor="under-200" />
-    <Checkbox name="under-200" label="Até 200" labelFor="under-200" />
-    <Checkbox name="under-200" label="Até 200" labelFor="under-200" />
-    <Checkbox name="under-200" label="Até 200" labelFor="under-200" />
-
-    <Heading lineBottom>Categoria</Heading>
-    <Checkbox name="ford" label="Ford" labelFor="ford" />
-    <Checkbox name="ford" label="Ford" labelFor="ford" />
-    <Checkbox name="ford" label="Ford" labelFor="ford" />
-
-    <Heading lineBottom>Localidade</Heading>
-    <Checkbox name="sao-paulo" label="São Paulo" labelFor="sao-paulo" />
-    <Checkbox name="sao-paulo" label="São Paulo" labelFor="sao-paulo" />
-    <Checkbox name="sao-paulo" label="São Paulo" labelFor="sao-paulo" />
+        {item.type === 'radio' &&
+          item.fields.map((field) => (
+            <Radio
+              key={field.name}
+              id={field.name}
+              value={field.name}
+              name={item.name}
+              label={field.label}
+              labelFor={field.name}
+            />
+          ))}
+      </div>
+    ))}
 
     <Button fullwidth size="medium">
       Buscar
