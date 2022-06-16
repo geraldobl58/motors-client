@@ -1,36 +1,14 @@
-import Base from 'templates/Base'
-
-import { Container } from 'components/Container'
-
-import Details, { DetailsProps } from 'components/Details'
-import Gallery, { GalleryImageProps } from 'components/Gallery'
-import SingleInfo, { SingleInfoProps } from 'components/SingleInfo'
-
+import { CardProps } from 'components/Card'
 import * as S from './styles'
 
 export type CarsTemplateProps = {
-  singleInfo: SingleInfoProps
-  gallery?: GalleryImageProps[]
-  details: DetailsProps
+  cars?: CardProps[]
 }
 
-const Cars = ({ singleInfo, gallery, details }: CarsTemplateProps) => (
-  <Base>
-    <S.Main>
-      <S.Sections>{!!gallery && <Gallery items={gallery} />}</S.Sections>
-    </S.Main>
-    <Container>
-      <S.Info>
-        <S.Sections>
-          <SingleInfo {...singleInfo} />
-        </S.Sections>
-      </S.Info>
-      <S.Separator />
-      <S.Sections>
-        <Details {...details} />
-      </S.Sections>
-    </Container>
-  </Base>
+const CarsTemplate = ({ cars = [] }: CarsTemplateProps) => (
+  <S.Wrapper>
+    <h1>Cars</h1>
+  </S.Wrapper>
 )
 
-export default Cars
+export default CarsTemplate

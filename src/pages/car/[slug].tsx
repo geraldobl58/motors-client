@@ -1,9 +1,9 @@
-import Cars, { CarsTemplateProps } from 'templates/Cars'
+import Car, { CarTemplateProps } from 'templates/Car'
 
 import galleryMock from 'components/Gallery/mock'
 
-export default function Index(props: CarsTemplateProps) {
-  return <Cars {...props} />
+export default function Index(props: CarTemplateProps) {
+  return <Car {...props} />
 }
 
 export async function getStaticPaths() {
