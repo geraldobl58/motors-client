@@ -1,5 +1,6 @@
 import { screen } from '@testing-library/react'
 import { renderWithTheme } from 'utils/tests/helpers'
+import userEvent from '@testing-library/user-event'
 
 import ExploreSidebar from '.'
 
@@ -7,7 +8,7 @@ import items from './mock'
 
 describe('<ExploreSidebar />', () => {
   it('should render the headings', () => {
-    renderWithTheme(<ExploreSidebar items={items} />)
+    renderWithTheme(<ExploreSidebar items={items} onFilter={jest.fn} />)
 
     expect(
       screen.getByRole('heading', { name: /ordenar/i })
@@ -25,7 +26,7 @@ describe('<ExploreSidebar />', () => {
   })
 
   it('should render inputs', () => {
-    renderWithTheme(<ExploreSidebar items={items} />)
+    renderWithTheme(<ExploreSidebar items={items} onFilter={jest.fn} />)
 
     expect(
       screen.getByRole('checkbox', { name: /Abaixo de R\$200/i })
@@ -37,7 +38,7 @@ describe('<ExploreSidebar />', () => {
   })
 
   it('should render button filter', () => {
-    renderWithTheme(<ExploreSidebar items={items} />)
+    renderWithTheme(<ExploreSidebar items={items} onFilter={jest.fn} />)
 
     expect(screen.getByRole('button', { name: /buscar/i })).toBeInTheDocument()
   })
@@ -47,6 +48,7 @@ describe('<ExploreSidebar />', () => {
       <ExploreSidebar
         items={items}
         initialValues={{ ford: true, sort_by: 'low-to-high' }}
+        onFilter={jest.fn}
       />
     )
 
