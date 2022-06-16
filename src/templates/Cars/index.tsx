@@ -14,28 +14,35 @@ export type CarsTemplateProps = {
   filterItems: ItemProps[]
 }
 
-const CarsTemplate = ({ cars = [], filterItems }: CarsTemplateProps) => (
-  <Base>
-    <S.Main>
-      <ExploreSidebar
-        items={filterItems}
-        onFilter={() => console.log('filter')}
-      />
+const CarsTemplate = ({ cars = [], filterItems }: CarsTemplateProps) => {
+  const handleFilter = () => {
+    return
+  }
 
-      <section>
-        <Grid>
-          {cars.map((item) => (
-            <Card key={item.title} {...item} />
-          ))}
-        </Grid>
+  const handleShoMore = () => {
+    return
+  }
 
-        <S.ShowMore role="button" onClick={() => console.log('show more')}>
-          <p>Carregar Mais</p>
-          <ArrowDown size={35} />
-        </S.ShowMore>
-      </section>
-    </S.Main>
-  </Base>
-)
+  return (
+    <Base>
+      <S.Main>
+        <ExploreSidebar items={filterItems} onFilter={handleFilter} />
+
+        <section>
+          <Grid>
+            {cars.map((item) => (
+              <Card key={item.title} {...item} />
+            ))}
+          </Grid>
+
+          <S.ShowMore role="button" onClick={handleShoMore}>
+            <p>Carregar Mais</p>
+            <ArrowDown size={35} />
+          </S.ShowMore>
+        </section>
+      </S.Main>
+    </Base>
+  )
+}
 
 export default CarsTemplate
