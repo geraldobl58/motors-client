@@ -1,15 +1,14 @@
 import { BannerProps } from 'components/Banner'
 import { CardProps } from 'components/Card'
-import { Container } from 'components/Container'
 
 import BannerSlider from 'components/BannerSlider'
-import Menu from 'components/Menu'
 
 import * as S from './styles'
 import Showcase from 'components/Showcase'
 import Base from 'templates/Base'
 
 export type HomeTemplateProps = {
+  data: any
   banners: BannerProps[]
   recommended: CardProps[]
   mostSearchedCars: CardProps[]

@@ -1,7 +1,9 @@
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
-
 import { AppProps } from 'next/app'
 import Head from 'next/head'
+
+import { ApolloProvider } from '@apollo/client'
+
+import { useApollo } from 'utils/apollo'
 
 import { ThemeProvider } from 'styled-components'
 
@@ -9,6 +11,8 @@ import GlobalStyles from 'styles/global'
 import theme from 'styles/theme'
 
 function App({ Component, pageProps }: AppProps) {
+  const client = useApollo(pageProps.initialApolloState)
+
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
