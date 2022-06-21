@@ -1,7 +1,6 @@
 import Heading from 'components/Heading'
 
-import formattedNumber from 'utils/format-number'
-import formatPrice from 'utils/format-price'
+import { formatPrice } from 'utils/formattedPrice'
 
 import * as S from './styles'
 
@@ -41,7 +40,7 @@ const SingleInfo = ({
       </S.Container>
       <S.Container>
         <S.Title>KM</S.Title>
-        <S.Content>{formattedNumber(milage)}</S.Content>
+        <S.Content>{milage}</S.Content>
       </S.Container>
       <S.Container>
         <S.Title>Combustível</S.Title>

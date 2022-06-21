@@ -27,7 +27,7 @@ exports[`<SingleInfo /> should render single information 1`] = `
   justify-content: space-between;
 }
 
-.c3 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -42,7 +42,7 @@ exports[`<SingleInfo /> should render single information 1`] = `
   justify-content: space-between;
 }
 
-.c4 {
+.c5 {
   display: block;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -51,8 +51,28 @@ exports[`<SingleInfo /> should render single information 1`] = `
   margin-top: 4.0rem;
 }
 
-.c5 {
+.c6 {
+  color: #7D7D7D;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+.c7 {
+  color: #222222;
+  font-size: 1.6rem;
+}
+
+.c3 {
+  font-weight: 700;
+  font-size: 2.8rem;
+}
+
+.c8 {
   margin-top: 4.0rem;
+}
+
+.c9 {
+  font-size: 1.8rem;
 }
 
 @media (min-width:768px) {
@@ -74,109 +94,109 @@ exports[`<SingleInfo /> should render single information 1`] = `
       Territory
     </h2>
     <p
-      class=""
+      class="c3"
     >
-      198900
+      R$ 198.900,00
     </p>
   </div>
   <div
-    class="c3"
+    class="c4"
   >
     <div
-      class="c4"
+      class="c5"
     >
       <h5
-        class=""
+        class="c6"
       >
         Ano
       </h5>
       <h3
-        class=""
+        class="c7"
       >
-        2022
+        2020/2021
       </h3>
     </div>
     <div
-      class="c4"
+      class="c5"
     >
       <h5
-        class=""
+        class="c6"
       >
         KM
       </h5>
       <h3
-        class=""
+        class="c7"
       >
         2500
       </h3>
     </div>
     <div
-      class="c4"
+      class="c5"
     >
       <h5
-        class=""
+        class="c6"
       >
         Combustível
       </h5>
       <h3
-        class=""
+        class="c7"
       >
         Gasolina
       </h3>
     </div>
     <div
-      class="c4"
+      class="c5"
     >
       <h5
-        class=""
+        class="c6"
       >
         Câmbio
       </h5>
       <h3
-        class=""
+        class="c7"
       >
         Manual
       </h3>
     </div>
     <div
-      class="c4"
+      class="c5"
     >
       <h5
-        class=""
+        class="c6"
       >
         Cor
       </h5>
       <h3
-        class=""
+        class="c7"
       >
         Branco
       </h3>
     </div>
     <div
-      class="c4"
+      class="c5"
     >
       <h5
-        class=""
+        class="c6"
       >
         Final de placa
       </h5>
       <h3
-        class=""
+        class="c7"
       >
         5
       </h3>
     </div>
   </div>
   <div
-    class="c5"
+    class="c8"
   >
     <h5
-      class=""
+      class="c6"
     >
       Sobre este carro
     </h5>
     <p
-      class=""
+      class="c9"
     >
       Mussum Ipsum, cacilds vidis litro abertis.
     </p>

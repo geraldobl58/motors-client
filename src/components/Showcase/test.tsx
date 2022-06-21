@@ -17,13 +17,7 @@ describe('<Showcase />', () => {
     renderWithTheme(<Showcase {...props} />)
 
     expect(
-      screen.getByRole('heading', { name: /Recomendados/i })
-    ).toBeInTheDocument()
-
-    expect(screen.getByText(/Realize/i)).toBeInTheDocument()
-
-    expect(
-      screen.getByRole('heading', { name: cardsMock[0].title })
+      screen.getByRole('heading', { name: props.title })
     ).toBeInTheDocument()
   })
 })
