@@ -8,7 +8,6 @@ import Showcase from 'components/Showcase'
 import Base from 'templates/Base'
 
 export type HomeTemplateProps = {
-  data: any
   banners: BannerProps[]
   recommended: CardProps[]
   mostSearchedCars: CardProps[]

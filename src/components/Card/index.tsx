@@ -9,9 +9,11 @@ import * as S from './styles'
 
 export type CardProps = {
   img: string
+  make: string
   title: string
   version: string
   fuel: string
+  exchange: string
   price: number
   year: string
   mileage: number
@@ -23,9 +25,11 @@ export type CardProps = {
 
 const Card = ({
   img,
+  make,
   title,
   version,
   fuel,
+  exchange,
   price,
   year,
   mileage,
@@ -45,9 +49,13 @@ const Card = ({
     </S.ImageBox>
     <S.Content>
       <S.Info>
-        <S.Title>{title}</S.Title>
+        <S.Title>
+          {make} {title}
+        </S.Title>
         <S.Version>{version}</S.Version>
-        <S.Fuel>{fuel}</S.Fuel>
+        <S.Fuel>
+          {fuel} - {exchange}
+        </S.Fuel>
         <S.Price>{price}</S.Price>
         <S.Box>
           <S.BoxInfo>
