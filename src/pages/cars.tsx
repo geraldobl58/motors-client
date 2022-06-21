@@ -1,11 +1,11 @@
 import CarsTemplate, { CarsTemplateProps } from 'templates/Cars'
 
-import { gql } from '@apollo/client'
-
 import { initializeApollo } from 'utils/apollo'
 import { formatPrice } from 'utils/formattedPrice'
 
 import filterItemMock from 'components/ExploreSidebar/mock'
+
+import { QUERY_CARS } from 'graphql/queries/cars'
 
 export default function Index(props: CarsTemplateProps) {
   return <CarsTemplate {...props} />
@@ -15,31 +15,7 @@ export async function getStaticProps() {
   const apollotClient = initializeApollo()
 
   const { data } = await apollotClient.query({
-    query: gql`
-      query QueryVehicles {
-        vehicles {
-          make {
-            nome
-          }
-          titulo
-          slug
-          cover {
-            url
-          }
-          version {
-            nome
-          }
-          combustivel
-          cambio
-          preco
-          ano
-          kilometragem
-          localization {
-            nome
-          }
-        }
-      }
-    `
+    query: QUERY_CARS
   })
 
   return {
