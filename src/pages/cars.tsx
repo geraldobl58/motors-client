@@ -15,7 +15,8 @@ export async function getStaticProps() {
   const apollotClient = initializeApollo()
 
   const { data } = await apollotClient.query({
-    query: QUERY_CARS
+    query: QUERY_CARS,
+    variables: 9
   })
 
   return {
