@@ -45,7 +45,7 @@ export interface QueryVehicles_vehicles {
 }
 
 export interface QueryVehicles {
-  vehicles: (QueryVehicles_vehicles | null)[] | null;
+  vehicles: QueryVehicles_vehicles[];
 }
 
 export interface QueryVehiclesVariables {
