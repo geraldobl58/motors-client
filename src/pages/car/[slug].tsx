@@ -53,6 +53,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const car = data.vehicles[0]
 
+  console.log(data)
+
   return {
     props: {
       revalidate: 60,
@@ -73,8 +75,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         make: car.make?.nome,
         version: car.version?.nome,
         location: car.localization?.nome
-      },
-      items: car.items.map((item) => item.nome)
+      }
     }
   }
 }
