@@ -10,7 +10,7 @@ export const Wrapper = styled.article`
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `
 
-export const ImageBox = styled.div`
+export const ImageBox = styled.a`
   height: 22rem;
   width: 100%;
   background: #f6f7f8;
@@ -53,7 +53,9 @@ export const Content = styled.div`
   `}
 `
 
-export const Info = styled.div``
+export const Info = styled.a`
+  text-decoration: none;
+`
 
 export const Title = styled.h3`
   ${({ theme }) => css`

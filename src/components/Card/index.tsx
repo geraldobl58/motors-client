@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import Button from 'components/Button'
 import Ribbon, { RibbonColors, RibbonSizes } from 'components/Ribbon'
 
@@ -8,6 +10,7 @@ import { Speedometer } from '@styled-icons/bootstrap/Speedometer'
 import * as S from './styles'
 
 export type CardProps = {
+  slug: string
   img: string
   make: string
   title: string
@@ -24,6 +27,7 @@ export type CardProps = {
 }
 
 const Card = ({
+  slug,
   img,
   make,
   title,
@@ -44,34 +48,39 @@ const Card = ({
         {ribbon}
       </Ribbon>
     )}
-    <S.ImageBox>
-      <img src={img} alt={title} />
-    </S.ImageBox>
+    <Link href={`/car/${slug}`} passHref>
+      <S.ImageBox>
+        <img src={img} alt={title} />
+      </S.ImageBox>
+    </Link>
+
     <S.Content>
-      <S.Info>
-        <S.Title>
-          {make} {title}
-        </S.Title>
-        <S.Version>{version}</S.Version>
-        <S.Fuel>
-          {fuel} - {exchange}
-        </S.Fuel>
-        <S.Price>{price}</S.Price>
-        <S.Box>
-          <S.BoxInfo>
-            <Calendar />
-            <S.YearTitle>{year}</S.YearTitle>
-          </S.BoxInfo>
-          <S.BoxInfo>
-            <Speedometer />
-            <S.MileageTitle>{mileage}</S.MileageTitle>
-          </S.BoxInfo>
-        </S.Box>
-        <S.Location>{location}</S.Location>
-        <Button fullwidth icon={<VehicleCarProfileLtr />} size="medium">
-          Ver Mais
-        </Button>
-      </S.Info>
+      <Link href={`/car/${slug}`} passHref>
+        <S.Info>
+          <S.Title>
+            {make} {title}
+          </S.Title>
+          <S.Version>{version}</S.Version>
+          <S.Fuel>
+            {fuel} - {exchange}
+          </S.Fuel>
+          <S.Price>{price}</S.Price>
+          <S.Box>
+            <S.BoxInfo>
+              <Calendar />
+              <S.YearTitle>{year}</S.YearTitle>
+            </S.BoxInfo>
+            <S.BoxInfo>
+              <Speedometer />
+              <S.MileageTitle>{mileage}</S.MileageTitle>
+            </S.BoxInfo>
+          </S.Box>
+          <S.Location>{location}</S.Location>
+          <Button fullwidth icon={<VehicleCarProfileLtr />} size="medium">
+            Ver Mais
+          </Button>
+        </S.Info>
+      </Link>
     </S.Content>
   </S.Wrapper>
 )

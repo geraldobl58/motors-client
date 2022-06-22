@@ -30,6 +30,7 @@ export async function getStaticProps() {
     props: {
       revalidate: 60,
       cars: data.vehicles.map((item) => ({
+        slug: item.slug,
         img: item.cover?.url,
         make: item.make?.nome,
         title: item.titulo,
