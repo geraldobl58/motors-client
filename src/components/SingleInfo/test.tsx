@@ -5,6 +5,7 @@ import { renderWithTheme } from 'utils/tests/helpers'
 import SingleInfo from '.'
 
 const props = {
+  make: 'Ford',
   title: 'Territory',
   year: '2020/2021',
   milage: 2500,
@@ -19,6 +20,8 @@ const props = {
 describe('<SingleInfo />', () => {
   it('should render single information', () => {
     const { container } = renderWithTheme(<SingleInfo {...props} />)
+
+    expect(screen.getByRole('heading', { name: /ford/i })).toBeInTheDocument()
 
     expect(
       screen.getByRole('heading', { name: /territory/i })

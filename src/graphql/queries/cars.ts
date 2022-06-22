@@ -25,3 +25,35 @@ export const QUERY_CARS = gql`
     }
   }
 `
+
+export const QUERY_CAR_BY_SLUG = gql`
+  query QueryVehicleBySlug($slug: String!) {
+    vehicles(where: { slug: $slug }) {
+      gallery {
+        url
+        label: alternativeText
+      }
+      titulo
+      preco
+      ano
+      kilometragem
+      combustivel
+      cambio
+      cor
+      placa_final
+      descricao
+      make {
+        nome
+      }
+      version {
+        nome
+      }
+      localization {
+        nome
+      }
+      items {
+        nome
+      }
+    }
+  }
+`

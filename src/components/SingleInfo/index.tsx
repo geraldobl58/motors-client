@@ -5,6 +5,7 @@ import { formatPrice } from 'utils/formattedPrice'
 import * as S from './styles'
 
 export type SingleInfoProps = {
+  make: string
   title: string
   year: string
   milage: number
@@ -17,6 +18,7 @@ export type SingleInfoProps = {
 }
 
 const SingleInfo = ({
+  make,
   title,
   year,
   milage,
@@ -29,7 +31,9 @@ const SingleInfo = ({
 }: SingleInfoProps) => (
   <S.Wrapper>
     <S.Header>
-      <Heading color="primary">{title}</Heading>
+      <Heading color="primary">
+        {make} {title}
+      </Heading>
       <S.Price>{formatPrice(price)}</S.Price>
     </S.Header>
 
@@ -62,7 +66,7 @@ const SingleInfo = ({
 
     <S.About>
       <S.Title>Sobre este carro</S.Title>
-      <S.Description>{description}</S.Description>
+      <S.Description dangerouslySetInnerHTML={{ __html: description }} />
     </S.About>
   </S.Wrapper>
 )

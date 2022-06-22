@@ -19,6 +19,15 @@ export enum ENUM_VEHICLE_COMBUSTIVEL {
   Gasolina = "Gasolina",
 }
 
+export enum ENUM_VEHICLE_COR {
+  Amarelo = "Amarelo",
+  Azul = "Azul",
+  Branco = "Branco",
+  Prata = "Prata",
+  Preto = "Preto",
+  Vermelho = "Vermelho",
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

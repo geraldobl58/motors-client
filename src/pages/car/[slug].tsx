@@ -1,38 +1,80 @@
+import { GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
+
+import {
+  QueryVehicles,
+  QueryVehiclesVariables
+} from 'graphql/generated/QueryVehicles'
+import { QUERY_CARS, QUERY_CAR_BY_SLUG } from 'graphql/queries/cars'
+import {
+  QueryVehicleBySlug,
+  QueryVehicleBySlugVariables
+} from 'graphql/generated/QueryVehicleBySlug'
+
+import { initializeApollo } from 'utils/apollo'
+
 import Car, { CarTemplateProps } from 'templates/Car'
 
-import galleryMock from 'components/Gallery/mock'
+const apolloClient = initializeApollo()
 
 export default function Index(props: CarTemplateProps) {
+  const router = useRouter()
+
+  if (router.isFallback) return null
+
   return <Car {...props} />
 }
 
 export async function getStaticPaths() {
-  return {
-    paths: [{ params: { slug: 'territory' } }],
-    fallback: false
-  }
+  const { data } = await apolloClient.query<
+    QueryVehicles,
+    QueryVehiclesVariables
+  >({
+    query: QUERY_CARS,
+    variables: { limit: 9 }
+  })
+
+  const paths = data.vehicles.map(({ slug }) => ({
+    params: { slug }
+  }))
+
+  return { paths, fallback: true }
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { data } = await apolloClient.query<
+    QueryVehicleBySlug,
+    QueryVehicleBySlugVariables
+  >({ query: QUERY_CAR_BY_SLUG, variables: { slug: `${params?.slug}` } })
+
+  if (!data.vehicles.length) {
+    return { notFound: true }
+  }
+
+  const car = data.vehicles[0]
+
   return {
     props: {
+      revalidate: 60,
       singleInfo: {
-        title: 'Territory',
-        year: '2020/2021',
-        milage: 25000,
-        fuel: 'Gasolina',
-        exchange: 'Manual',
-        color: 'Branco',
-        endOfPlate: 5,
-        price: 198900,
-        description: 'Mussum Ipsum, cacilds vidis litro abertis.'
+        make: car.make?.nome,
+        title: car.titulo,
+        year: car.ano,
+        milage: car.kilometragem?.toFixed(3),
+        fuel: car.combustivel,
+        exchange: car.cambio,
+        color: car.cor,
+        endOfPlate: car.placa_final,
+        price: car.preco,
+        description: car.descricao
       },
-      gallery: galleryMock,
+      gallery: car.gallery,
       details: {
-        make: 'Ford',
-        version: '1.5 ECOBOOST GTDI GASOLINA TITANIUM',
-        location: 'São Paulo'
-      }
+        make: car.make?.nome,
+        version: car.version?.nome,
+        location: car.localization?.nome
+      },
+      items: car.items.map((item) => item.nome)
     }
   }
 }
