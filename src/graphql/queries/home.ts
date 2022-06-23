@@ -1,17 +1,13 @@
 import { gql } from '@apollo/client'
 
+import { BannerFragment } from 'graphql/fragments/banner'
+
 export const QUERY_HOME = gql`
   query QueryHome {
     banners {
-      image {
-        url
-      }
-      title
-      subtitle
-      button {
-        label
-        link
-      }
+      ...BannerFragment
     }
   }
+
+  ${BannerFragment}
 `
