@@ -68,7 +68,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         price: car.preco,
         description: car.descricao
       },
-      gallery: car.gallery,
+      gallery: car.gallery.map((image) => ({
+        src: image.url
+      })),
       details: {
         make: car.make?.nome,
         version: car.version?.nome,
