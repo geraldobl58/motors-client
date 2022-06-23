@@ -8,13 +8,17 @@ import SingleInfo, { SingleInfoProps } from 'components/SingleInfo'
 
 import * as S from './styles'
 
+import { OptionalProps } from 'components/Optional'
+import CardOptional from 'components/CardOptional'
+
 export type CarTemplateProps = {
   singleInfo: SingleInfoProps
   gallery?: GalleryImageProps[]
   details: DetailsProps
+  options: OptionalProps[]
 }
 
-const Cars = ({ singleInfo, gallery, details }: CarTemplateProps) => (
+const Cars = ({ singleInfo, gallery, details, options }: CarTemplateProps) => (
   <Base>
     <S.Main>
       <S.Sections>{!!gallery && <Gallery items={gallery} />}</S.Sections>
@@ -28,6 +32,11 @@ const Cars = ({ singleInfo, gallery, details }: CarTemplateProps) => (
       <S.Separator />
       <S.Sections>
         <Details {...details} />
+      </S.Sections>
+
+      <S.Separator />
+      <S.Sections>
+        <CardOptional title="Itens de veículo" items={options} />
       </S.Sections>
     </Container>
   </Base>

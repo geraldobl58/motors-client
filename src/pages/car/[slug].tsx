@@ -73,7 +73,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         make: car.make?.nome,
         version: car.version?.nome,
         location: car.localization?.nome
-      }
+      },
+      options: car.items.map((item) => ({
+        icon: item.icon?.url,
+        title: item.nome
+      }))
     }
   }
 }

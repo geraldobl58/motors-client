@@ -91,6 +91,8 @@ exports[`<SingleInfo /> should render single information 1`] = `
       class="c2"
       color="primary"
     >
+      Ford
+       
       Territory
     </h2>
     <p

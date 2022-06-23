@@ -52,6 +52,9 @@ export const QUERY_CAR_BY_SLUG = gql`
         nome
       }
       items {
+        icon {
+          url
+        }
         nome
       }
     }

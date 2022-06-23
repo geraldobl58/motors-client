@@ -30,8 +30,14 @@ export interface QueryVehicleBySlug_vehicles_localization {
   nome: string;
 }
 
+export interface QueryVehicleBySlug_vehicles_items_icon {
+  __typename: "UploadFile";
+  url: string;
+}
+
 export interface QueryVehicleBySlug_vehicles_items {
   __typename: "Item";
+  icon: QueryVehicleBySlug_vehicles_items_icon | null;
   nome: string;
 }
 

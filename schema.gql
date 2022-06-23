@@ -176,6 +176,7 @@ type Item {
   updated_at: DateTime!
   nome: String!
   slug: String!
+  icon: UploadFile
   vehicles(sort: String, limit: Int, start: Int, where: JSON): [Vehicle!]!
 }
 
@@ -196,6 +197,7 @@ type ItemGroupBy {
   updated_at: [ItemConnectionUpdated_at]
   nome: [ItemConnectionNome]
   slug: [ItemConnectionSlug]
+  icon: [ItemConnectionIcon]
 }
 
 type ItemConnectionId {
@@ -223,10 +225,16 @@ type ItemConnectionSlug {
   connection: ItemConnection
 }
 
+type ItemConnectionIcon {
+  key: ID
+  connection: ItemConnection
+}
+
 input ItemInput {
   nome: String!
   slug: String!
   vehicles: [ID]
+  icon: ID
   created_by: ID
   updated_by: ID
 }
@@ -235,6 +243,7 @@ input editItemInput {
   nome: String
   slug: String
   vehicles: [ID]
+  icon: ID
   created_by: ID
   updated_by: ID
 }
@@ -1297,7 +1306,7 @@ type deleteUserPayload {
   user: UsersPermissionsUser
 }
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Categorias | CategoriasConnection | CategoriasAggregator | CategoriasGroupBy | CategoriasConnectionId | CategoriasConnectionCreated_at | CategoriasConnectionUpdated_at | CategoriasConnectionNome | CategoriasConnectionSlug | CategoriasConnectionVehicle | createCategoriaPayload | updateCategoriaPayload | deleteCategoriaPayload | Item | ItemConnection | ItemAggregator | ItemGroupBy | ItemConnectionId | ItemConnectionCreated_at | ItemConnectionUpdated_at | ItemConnectionNome | ItemConnectionSlug | createItemPayload | updateItemPayload | deleteItemPayload | Localization | LocalizationConnection | LocalizationAggregator | LocalizationGroupBy | LocalizationConnectionId | LocalizationConnectionCreated_at | LocalizationConnectionUpdated_at | LocalizationConnectionNome | LocalizationConnectionSlug | LocalizationConnectionVehicle | createLocalizationPayload | updateLocalizationPayload | deleteLocalizationPayload | New | NewConnection | NewAggregator | NewGroupBy | NewConnectionId | NewConnectionCreated_at | NewConnectionUpdated_at | NewConnectionTitulo | NewConnectionDescricao | NewConnectionCapa | NewConnectionSlug | createNewPayload | updateNewPayload | deleteNewPayload | Vehicle | VehicleConnection | VehicleAggregator | VehicleAggregatorSum | VehicleAggregatorAvg | VehicleAggregatorMin | VehicleAggregatorMax | VehicleGroupBy | VehicleConnectionId | VehicleConnectionCreated_at | VehicleConnectionUpdated_at | VehicleConnectionTitulo | VehicleConnectionSlug | VehicleConnectionDescricao | VehicleConnectionPreco | VehicleConnectionCover | VehicleConnectionKilometragem | VehicleConnectionPlaca_final | VehicleConnectionCombustivel | VehicleConnectionCambio | VehicleConnectionCor | VehicleConnectionMake | VehicleConnectionLocalization | VehicleConnectionVersion | VehicleConnectionAno | createVehiclePayload | updateVehiclePayload | deleteVehiclePayload | Versao | VersaoConnection | VersaoAggregator | VersaoGroupBy | VersaoConnectionId | VersaoConnectionCreated_at | VersaoConnectionUpdated_at | VersaoConnectionNome | VersaoConnectionSlug | VersaoConnectionVehicle | createVersaoPayload | updateVersaoPayload | deleteVersaoPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Categorias | CategoriasConnection | CategoriasAggregator | CategoriasGroupBy | CategoriasConnectionId | CategoriasConnectionCreated_at | CategoriasConnectionUpdated_at | CategoriasConnectionNome | CategoriasConnectionSlug | CategoriasConnectionVehicle | createCategoriaPayload | updateCategoriaPayload | deleteCategoriaPayload | Item | ItemConnection | ItemAggregator | ItemGroupBy | ItemConnectionId | ItemConnectionCreated_at | ItemConnectionUpdated_at | ItemConnectionNome | ItemConnectionSlug | ItemConnectionIcon | createItemPayload | updateItemPayload | deleteItemPayload | Localization | LocalizationConnection | LocalizationAggregator | LocalizationGroupBy | LocalizationConnectionId | LocalizationConnectionCreated_at | LocalizationConnectionUpdated_at | LocalizationConnectionNome | LocalizationConnectionSlug | LocalizationConnectionVehicle | createLocalizationPayload | updateLocalizationPayload | deleteLocalizationPayload | New | NewConnection | NewAggregator | NewGroupBy | NewConnectionId | NewConnectionCreated_at | NewConnectionUpdated_at | NewConnectionTitulo | NewConnectionDescricao | NewConnectionCapa | NewConnectionSlug | createNewPayload | updateNewPayload | deleteNewPayload | Vehicle | VehicleConnection | VehicleAggregator | VehicleAggregatorSum | VehicleAggregatorAvg | VehicleAggregatorMin | VehicleAggregatorMax | VehicleGroupBy | VehicleConnectionId | VehicleConnectionCreated_at | VehicleConnectionUpdated_at | VehicleConnectionTitulo | VehicleConnectionSlug | VehicleConnectionDescricao | VehicleConnectionPreco | VehicleConnectionCover | VehicleConnectionKilometragem | VehicleConnectionPlaca_final | VehicleConnectionCombustivel | VehicleConnectionCambio | VehicleConnectionCor | VehicleConnectionMake | VehicleConnectionLocalization | VehicleConnectionVersion | VehicleConnectionAno | createVehiclePayload | updateVehiclePayload | deleteVehiclePayload | Versao | VersaoConnection | VersaoAggregator | VersaoGroupBy | VersaoConnectionId | VersaoConnectionCreated_at | VersaoConnectionUpdated_at | VersaoConnectionNome | VersaoConnectionSlug | VersaoConnectionVehicle | createVersaoPayload | updateVersaoPayload | deleteVersaoPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload
 
 input InputID {
   id: ID!

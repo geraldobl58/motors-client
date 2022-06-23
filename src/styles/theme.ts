@@ -33,7 +33,8 @@ export default {
     black: '#222222',
     gray: '#7D7D7D',
     light: '#F3F3F3',
-    hot: '#CC2828'
+    hot: '#CC2828',
+    grayLight: '#b1b1b1'
   },
   spacings: {
     xxsmall: '0.8rem',
