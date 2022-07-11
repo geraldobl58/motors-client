@@ -4,7 +4,13 @@ import { QueryHome } from 'graphql/generated/QueryHome'
 import Home, { HomeTemplateProps } from 'templates/Home'
 
 import { initializeApollo } from 'utils/apollo'
-import { formatPrice } from 'utils/formattedPrice'
+
+import {
+  bannersMapper,
+  bestSellersCarsMapper,
+  mostSearchedCarsMapper,
+  recommendedMapper
+} from 'utils/mappers'
 
 export default function Index(props: HomeTemplateProps) {
   return <Home {...props} />
@@ -20,58 +26,16 @@ export async function getStaticProps() {
   return {
     props: {
       revalidate: 10,
-      banners: banners.map((banner) => ({
-        img: banner.image?.url,
-        title: banner.title,
-        subtitle: banner.subtitle,
-        buttonLabel: banner.button?.label,
-        buttonLink: banner.button?.link
-      })),
+      banners: bannersMapper(banners),
       recommendedTitle: sections?.recomendados?.title,
       recommendedSubTitle: sections?.recomendados?.subtitle,
-      recommended: recommended.map((item) => ({
-        img: item.cover?.url,
-        make: item.make?.nome,
-        slug: item.slug,
-        title: item.titulo,
-        version: item.version?.nome,
-        fuel: item.combustivel,
-        exchange: item.cambio,
-        price: formatPrice(item.preco),
-        year: item.ano,
-        mileage: item.kilometragem?.toFixed(3),
-        location: item.localization?.nome
-      })),
+      recommended: recommendedMapper(recommended),
       mostWantedTitle: sections?.buscados?.title,
       mostWantedSubTitle: sections?.buscados?.subtitle,
-      mostSearchedCars: mostWanted.map((item) => ({
-        img: item.cover?.url,
-        make: item.make?.nome,
-        slug: item.slug,
-        title: item.titulo,
-        version: item.version?.nome,
-        fuel: item.combustivel,
-        exchange: item.cambio,
-        price: formatPrice(item.preco),
-        year: item.ano,
-        mileage: item.kilometragem?.toFixed(3),
-        location: item.localization?.nome
-      })),
+      mostSearchedCars: mostSearchedCarsMapper(mostWanted),
       bestSellersTitle: sections?.vendidos?.title,
       bestSellersSubTitle: sections?.vendidos?.subtitle,
-      bestSellersCars: bestSellers.map((item) => ({
-        img: item.cover?.url,
-        make: item.make?.nome,
-        slug: item.slug,
-        title: item.titulo,
-        version: item.version?.nome,
-        fuel: item.combustivel,
-        exchange: item.cambio,
-        price: formatPrice(item.preco),
-        year: item.ano,
-        mileage: item.kilometragem?.toFixed(3),
-        location: item.localization?.nome
-      }))
+      bestSellersCars: bestSellersCarsMapper(bestSellers)
     }
   }
 }
