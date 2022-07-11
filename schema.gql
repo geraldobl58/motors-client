@@ -194,7 +194,7 @@ type Categorias {
   updated_at: DateTime!
   nome: String!
   slug: String!
-  vehicle: Vehicle
+  vehicles(sort: String, limit: Int, start: Int, where: JSON): [Vehicle!]!
 }
 
 type CategoriasConnection {
@@ -214,7 +214,6 @@ type CategoriasGroupBy {
   updated_at: [CategoriasConnectionUpdated_at]
   nome: [CategoriasConnectionNome]
   slug: [CategoriasConnectionSlug]
-  vehicle: [CategoriasConnectionVehicle]
 }
 
 type CategoriasConnectionId {
@@ -242,15 +241,10 @@ type CategoriasConnectionSlug {
   connection: CategoriasConnection
 }
 
-type CategoriasConnectionVehicle {
-  key: ID
-  connection: CategoriasConnection
-}
-
 input CategoriaInput {
   nome: String!
   slug: String!
-  vehicle: ID
+  vehicles: [ID]
   created_by: ID
   updated_by: ID
 }
@@ -258,7 +252,7 @@ input CategoriaInput {
 input editCategoriaInput {
   nome: String
   slug: String
-  vehicle: ID
+  vehicles: [ID]
   created_by: ID
   updated_by: ID
 }
@@ -286,6 +280,46 @@ input deleteCategoriaInput {
 
 type deleteCategoriaPayload {
   categoria: Categorias
+}
+
+type Home {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  recomendados: ComponentPageSection
+  buscados: ComponentPageBuscados
+  vendidos: ComponentPageVendidos
+  published_at: DateTime
+}
+
+input HomeInput {
+  recomendados: ComponentPageSectionInput
+  buscados: ComponentPageBuscadoInput
+  vendidos: ComponentPageVendidoInput
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editHomeInput {
+  recomendados: editComponentPageSectionInput
+  buscados: editComponentPageBuscadoInput
+  vendidos: editComponentPageVendidoInput
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input updateHomeInput {
+  data: editHomeInput
+}
+
+type updateHomePayload {
+  home: Home
+}
+
+type deleteHomePayload {
+  home: Home
 }
 
 type Item {
@@ -397,7 +431,7 @@ type Localization {
   updated_at: DateTime!
   nome: String!
   slug: String
-  vehicle: Vehicle
+  vehicles(sort: String, limit: Int, start: Int, where: JSON): [Vehicle!]!
 }
 
 type LocalizationConnection {
@@ -417,7 +451,6 @@ type LocalizationGroupBy {
   updated_at: [LocalizationConnectionUpdated_at]
   nome: [LocalizationConnectionNome]
   slug: [LocalizationConnectionSlug]
-  vehicle: [LocalizationConnectionVehicle]
 }
 
 type LocalizationConnectionId {
@@ -445,15 +478,10 @@ type LocalizationConnectionSlug {
   connection: LocalizationConnection
 }
 
-type LocalizationConnectionVehicle {
-  key: ID
-  connection: LocalizationConnection
-}
-
 input LocalizationInput {
   nome: String!
   slug: String
-  vehicle: ID
+  vehicles: [ID]
   created_by: ID
   updated_by: ID
 }
@@ -461,7 +489,7 @@ input LocalizationInput {
 input editLocalizationInput {
   nome: String
   slug: String
-  vehicle: ID
+  vehicles: [ID]
   created_by: ID
   updated_by: ID
 }
@@ -621,6 +649,12 @@ enum ENUM_VEHICLE_COR {
   Prata
 }
 
+enum ENUM_VEHICLE_DESTAQUES {
+  recomendados
+  buscados
+  vendidos
+}
+
 type Vehicle {
   id: ID!
   created_at: DateTime!
@@ -639,6 +673,7 @@ type Vehicle {
   localization: Localization
   version: Versao
   ano: String!
+  destaques: ENUM_VEHICLE_DESTAQUES!
   gallery(sort: String, limit: Int, start: Int, where: JSON): [UploadFile!]!
   items(sort: String, limit: Int, start: Int, where: JSON): [Item!]!
 }
@@ -700,6 +735,7 @@ type VehicleGroupBy {
   localization: [VehicleConnectionLocalization]
   version: [VehicleConnectionVersion]
   ano: [VehicleConnectionAno]
+  destaques: [VehicleConnectionDestaques]
 }
 
 type VehicleConnectionId {
@@ -787,6 +823,11 @@ type VehicleConnectionAno {
   connection: VehicleConnection
 }
 
+type VehicleConnectionDestaques {
+  key: String
+  connection: VehicleConnection
+}
+
 input VehicleInput {
   titulo: String!
   slug: String!
@@ -804,6 +845,7 @@ input VehicleInput {
   localization: ID
   version: ID
   ano: String!
+  destaques: ENUM_VEHICLE_DESTAQUES!
   created_by: ID
   updated_by: ID
 }
@@ -825,6 +867,7 @@ input editVehicleInput {
   localization: ID
   version: ID
   ano: String
+  destaques: ENUM_VEHICLE_DESTAQUES
   created_by: ID
   updated_by: ID
 }
@@ -860,7 +903,7 @@ type Versao {
   updated_at: DateTime!
   nome: String!
   slug: String
-  vehicle: Vehicle
+  vehicles(sort: String, limit: Int, start: Int, where: JSON): [Vehicle!]!
 }
 
 type VersaoConnection {
@@ -880,7 +923,6 @@ type VersaoGroupBy {
   updated_at: [VersaoConnectionUpdated_at]
   nome: [VersaoConnectionNome]
   slug: [VersaoConnectionSlug]
-  vehicle: [VersaoConnectionVehicle]
 }
 
 type VersaoConnectionId {
@@ -908,15 +950,10 @@ type VersaoConnectionSlug {
   connection: VersaoConnection
 }
 
-type VersaoConnectionVehicle {
-  key: ID
-  connection: VersaoConnection
-}
-
 input VersaoInput {
   nome: String!
   slug: String
-  vehicle: ID
+  vehicles: [ID]
   created_by: ID
   updated_by: ID
 }
@@ -924,7 +961,7 @@ input VersaoInput {
 input editVersaoInput {
   nome: String
   slug: String
-  vehicle: ID
+  vehicles: [ID]
   created_by: ID
   updated_by: ID
 }
@@ -1424,6 +1461,26 @@ type deleteUserPayload {
   user: UsersPermissionsUser
 }
 
+type ComponentPageBuscados {
+  id: ID!
+  title: String!
+  subtitle: String
+  vehicles(sort: String, limit: Int, start: Int, where: JSON): [Vehicle!]!
+}
+
+input ComponentPageBuscadoInput {
+  title: String!
+  subtitle: String
+  vehicles: [ID]
+}
+
+input editComponentPageBuscadoInput {
+  id: ID
+  title: String
+  subtitle: String
+  vehicles: [ID]
+}
+
 type ComponentPageButton {
   id: ID!
   label: String!
@@ -1441,7 +1498,44 @@ input editComponentPageButtonInput {
   link: String
 }
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Banner | BannerConnection | BannerAggregator | BannerGroupBy | BannerConnectionId | BannerConnectionCreated_at | BannerConnectionUpdated_at | BannerConnectionImage | BannerConnectionTitle | BannerConnectionSubtitle | BannerConnectionButton | BannerConnectionPublished_at | createBannerPayload | updateBannerPayload | deleteBannerPayload | Categorias | CategoriasConnection | CategoriasAggregator | CategoriasGroupBy | CategoriasConnectionId | CategoriasConnectionCreated_at | CategoriasConnectionUpdated_at | CategoriasConnectionNome | CategoriasConnectionSlug | CategoriasConnectionVehicle | createCategoriaPayload | updateCategoriaPayload | deleteCategoriaPayload | Item | ItemConnection | ItemAggregator | ItemGroupBy | ItemConnectionId | ItemConnectionCreated_at | ItemConnectionUpdated_at | ItemConnectionNome | ItemConnectionSlug | ItemConnectionIcon | createItemPayload | updateItemPayload | deleteItemPayload | Localization | LocalizationConnection | LocalizationAggregator | LocalizationGroupBy | LocalizationConnectionId | LocalizationConnectionCreated_at | LocalizationConnectionUpdated_at | LocalizationConnectionNome | LocalizationConnectionSlug | LocalizationConnectionVehicle | createLocalizationPayload | updateLocalizationPayload | deleteLocalizationPayload | New | NewConnection | NewAggregator | NewGroupBy | NewConnectionId | NewConnectionCreated_at | NewConnectionUpdated_at | NewConnectionTitulo | NewConnectionDescricao | NewConnectionCapa | NewConnectionSlug | createNewPayload | updateNewPayload | deleteNewPayload | Vehicle | VehicleConnection | VehicleAggregator | VehicleAggregatorSum | VehicleAggregatorAvg | VehicleAggregatorMin | VehicleAggregatorMax | VehicleGroupBy | VehicleConnectionId | VehicleConnectionCreated_at | VehicleConnectionUpdated_at | VehicleConnectionTitulo | VehicleConnectionSlug | VehicleConnectionDescricao | VehicleConnectionPreco | VehicleConnectionCover | VehicleConnectionKilometragem | VehicleConnectionPlaca_final | VehicleConnectionCombustivel | VehicleConnectionCambio | VehicleConnectionCor | VehicleConnectionMake | VehicleConnectionLocalization | VehicleConnectionVersion | VehicleConnectionAno | createVehiclePayload | updateVehiclePayload | deleteVehiclePayload | Versao | VersaoConnection | VersaoAggregator | VersaoGroupBy | VersaoConnectionId | VersaoConnectionCreated_at | VersaoConnectionUpdated_at | VersaoConnectionNome | VersaoConnectionSlug | VersaoConnectionVehicle | createVersaoPayload | updateVersaoPayload | deleteVersaoPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentPageButton
+type ComponentPageSection {
+  id: ID!
+  title: String
+  subtitle: String
+}
+
+input ComponentPageSectionInput {
+  title: String
+  subtitle: String
+}
+
+input editComponentPageSectionInput {
+  id: ID
+  title: String
+  subtitle: String
+}
+
+type ComponentPageVendidos {
+  id: ID!
+  title: String!
+  subtitle: String
+  vehicles(sort: String, limit: Int, start: Int, where: JSON): [Vehicle!]!
+}
+
+input ComponentPageVendidoInput {
+  title: String!
+  subtitle: String
+  vehicles: [ID]
+}
+
+input editComponentPageVendidoInput {
+  id: ID
+  title: String
+  subtitle: String
+  vehicles: [ID]
+}
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Banner | BannerConnection | BannerAggregator | BannerGroupBy | BannerConnectionId | BannerConnectionCreated_at | BannerConnectionUpdated_at | BannerConnectionImage | BannerConnectionTitle | BannerConnectionSubtitle | BannerConnectionButton | BannerConnectionPublished_at | createBannerPayload | updateBannerPayload | deleteBannerPayload | Categorias | CategoriasConnection | CategoriasAggregator | CategoriasGroupBy | CategoriasConnectionId | CategoriasConnectionCreated_at | CategoriasConnectionUpdated_at | CategoriasConnectionNome | CategoriasConnectionSlug | createCategoriaPayload | updateCategoriaPayload | deleteCategoriaPayload | Home | updateHomePayload | deleteHomePayload | Item | ItemConnection | ItemAggregator | ItemGroupBy | ItemConnectionId | ItemConnectionCreated_at | ItemConnectionUpdated_at | ItemConnectionNome | ItemConnectionSlug | ItemConnectionIcon | createItemPayload | updateItemPayload | deleteItemPayload | Localization | LocalizationConnection | LocalizationAggregator | LocalizationGroupBy | LocalizationConnectionId | LocalizationConnectionCreated_at | LocalizationConnectionUpdated_at | LocalizationConnectionNome | LocalizationConnectionSlug | createLocalizationPayload | updateLocalizationPayload | deleteLocalizationPayload | New | NewConnection | NewAggregator | NewGroupBy | NewConnectionId | NewConnectionCreated_at | NewConnectionUpdated_at | NewConnectionTitulo | NewConnectionDescricao | NewConnectionCapa | NewConnectionSlug | createNewPayload | updateNewPayload | deleteNewPayload | Vehicle | VehicleConnection | VehicleAggregator | VehicleAggregatorSum | VehicleAggregatorAvg | VehicleAggregatorMin | VehicleAggregatorMax | VehicleGroupBy | VehicleConnectionId | VehicleConnectionCreated_at | VehicleConnectionUpdated_at | VehicleConnectionTitulo | VehicleConnectionSlug | VehicleConnectionDescricao | VehicleConnectionPreco | VehicleConnectionCover | VehicleConnectionKilometragem | VehicleConnectionPlaca_final | VehicleConnectionCombustivel | VehicleConnectionCambio | VehicleConnectionCor | VehicleConnectionMake | VehicleConnectionLocalization | VehicleConnectionVersion | VehicleConnectionAno | VehicleConnectionDestaques | createVehiclePayload | updateVehiclePayload | deleteVehiclePayload | Versao | VersaoConnection | VersaoAggregator | VersaoGroupBy | VersaoConnectionId | VersaoConnectionCreated_at | VersaoConnectionUpdated_at | VersaoConnectionNome | VersaoConnectionSlug | createVersaoPayload | updateVersaoPayload | deleteVersaoPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentPageBuscados | ComponentPageButton | ComponentPageSection | ComponentPageVendidos
 
 input InputID {
   id: ID!
@@ -1466,6 +1560,7 @@ type Query {
   categoria(id: ID!, publicationState: PublicationState): Categorias
   categorias(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Categorias!]!
   categoriasConnection(sort: String, limit: Int, start: Int, where: JSON): CategoriasConnection
+  home(publicationState: PublicationState): Home
   item(id: ID!, publicationState: PublicationState): Item
   items(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Item!]!
   itemsConnection(sort: String, limit: Int, start: Int, where: JSON): ItemConnection
@@ -1500,6 +1595,8 @@ type Mutation {
   createCategoria(input: createCategoriaInput): createCategoriaPayload
   updateCategoria(input: updateCategoriaInput): updateCategoriaPayload
   deleteCategoria(input: deleteCategoriaInput): deleteCategoriaPayload
+  updateHome(input: updateHomeInput): updateHomePayload
+  deleteHome: deleteHomePayload
   createItem(input: createItemInput): createItemPayload
   updateItem(input: updateItemInput): updateItemPayload
   deleteItem(input: deleteItemInput): deleteItemPayload
