@@ -14,7 +14,7 @@ export async function getStaticProps() {
   const apolloClient = initializeApollo()
 
   const {
-    data: { banners, recommended, mostWanted, bestSellers }
+    data: { banners, recommended, mostWanted, bestSellers, sections }
   } = await apolloClient.query<QueryHome>({ query: QUERY_HOME })
 
   return {
@@ -27,6 +27,8 @@ export async function getStaticProps() {
         buttonLabel: banner.button?.label,
         buttonLink: banner.button?.link
       })),
+      recommendedTitle: sections?.recomendados?.title,
+      recommendedSubTitle: sections?.recomendados?.subtitle,
       recommended: recommended.map((item) => ({
         img: item.cover?.url,
         make: item.make?.nome,
@@ -40,6 +42,8 @@ export async function getStaticProps() {
         mileage: item.kilometragem?.toFixed(3),
         location: item.localization?.nome
       })),
+      mostWantedTitle: sections?.buscados?.title,
+      mostWantedSubTitle: sections?.buscados?.subtitle,
       mostSearchedCars: mostWanted.map((item) => ({
         img: item.cover?.url,
         make: item.make?.nome,
@@ -53,6 +57,8 @@ export async function getStaticProps() {
         mileage: item.kilometragem?.toFixed(3),
         location: item.localization?.nome
       })),
+      bestSellersTitle: sections?.vendidos?.title,
+      bestSellersSubTitle: sections?.vendidos?.subtitle,
       bestSellersCars: bestSellers.map((item) => ({
         img: item.cover?.url,
         make: item.make?.nome,

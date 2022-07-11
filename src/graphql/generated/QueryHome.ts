@@ -133,9 +133,35 @@ export interface QueryHome_bestSellers {
   localization: QueryHome_bestSellers_localization | null;
 }
 
+export interface QueryHome_sections_recomendados {
+  __typename: "ComponentPageSection";
+  title: string | null;
+  subtitle: string | null;
+}
+
+export interface QueryHome_sections_buscados {
+  __typename: "ComponentPageBuscados";
+  title: string;
+  subtitle: string | null;
+}
+
+export interface QueryHome_sections_vendidos {
+  __typename: "ComponentPageVendidos";
+  title: string;
+  subtitle: string | null;
+}
+
+export interface QueryHome_sections {
+  __typename: "Home";
+  recomendados: QueryHome_sections_recomendados | null;
+  buscados: QueryHome_sections_buscados | null;
+  vendidos: QueryHome_sections_vendidos | null;
+}
+
 export interface QueryHome {
   banners: QueryHome_banners[];
   recommended: QueryHome_recommended[];
   mostWanted: QueryHome_mostWanted[];
   bestSellers: QueryHome_bestSellers[];
+  sections: QueryHome_sections | null;
 }

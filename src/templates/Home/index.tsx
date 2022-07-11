@@ -12,13 +12,25 @@ export type HomeTemplateProps = {
   recommended: CardProps[]
   mostSearchedCars: CardProps[]
   bestSellersCars: CardProps[]
+  recommendedTitle: string
+  recommendedSubTitle?: string
+  mostWantedTitle: string
+  mostWantedSubTitle?: string
+  bestSellersTitle: string
+  bestSellersSubTitle?: string
 }
 
 const Home = ({
   banners,
   recommended,
   mostSearchedCars,
-  bestSellersCars
+  bestSellersCars,
+  recommendedTitle,
+  recommendedSubTitle,
+  mostWantedTitle,
+  mostWantedSubTitle,
+  bestSellersTitle,
+  bestSellersSubTitle
 }: HomeTemplateProps) => (
   <Base>
     <BannerSlider items={banners} />
@@ -26,8 +38,8 @@ const Home = ({
     <S.Sections>
       {recommended.length > 0 && (
         <Showcase
-          title="Recomendados para você"
-          subtitle="Realize seu sonho e encontre seu veículo ideal"
+          title={recommendedTitle}
+          subtitle={recommendedSubTitle}
           cards={recommended}
         />
       )}
@@ -36,8 +48,8 @@ const Home = ({
     <S.Sections>
       {mostSearchedCars.length > 0 && (
         <Showcase
-          title="Carros mais buscados"
-          subtitle="Confira aqui os carros mais buscados"
+          title={mostWantedTitle}
+          subtitle={mostWantedSubTitle}
           cards={mostSearchedCars}
         />
       )}
@@ -46,8 +58,8 @@ const Home = ({
     <S.Sections>
       {bestSellersCars.length > 0 && (
         <Showcase
-          title="Os mais vendidos"
-          subtitle="Confira os mais vendidos"
+          title={bestSellersTitle}
+          subtitle={bestSellersSubTitle}
           cards={bestSellersCars}
         />
       )}

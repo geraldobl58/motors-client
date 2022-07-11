@@ -20,6 +20,20 @@ export const QUERY_HOME = gql`
     bestSellers: vehicles(where: { destaques: "vendidos" }, limit: 8) {
       ...VehicleFragment
     }
+    sections: home {
+      recomendados {
+        title
+        subtitle
+      }
+      buscados {
+        title
+        subtitle
+      }
+      vendidos {
+        title
+        subtitle
+      }
+    }
   }
 
   ${BannerFragment}
