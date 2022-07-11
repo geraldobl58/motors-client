@@ -18,7 +18,7 @@ export const Image = styled.div`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
-    padding: ${theme.spacings.xxsmall} ${theme.spacings.xsmall};
+    padding: 5px 8px;
     background-color: ${theme.colors.grayLight};
     border-radius: 0.4rem;
     margin-bottom: 1rem;
@@ -28,6 +28,6 @@ export const Image = styled.div`
 export const Title = styled.h3`
   ${({ theme }) => css`
     color: ${theme.colors.black};
-    font-size: ${theme.font.sizes.medium};
+    font-size: ${theme.font.sizes.xsmall};
   `}
 `
