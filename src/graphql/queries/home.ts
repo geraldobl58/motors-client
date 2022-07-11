@@ -12,6 +12,14 @@ export const QUERY_HOME = gql`
     recommended: vehicles(where: { destaques: "recomendados" }, limit: 8) {
       ...VehicleFragment
     }
+
+    mostWanted: vehicles(where: { destaques: "buscados" }, limit: 8) {
+      ...VehicleFragment
+    }
+
+    bestSellers: vehicles(where: { destaques: "vendidos" }, limit: 8) {
+      ...VehicleFragment
+    }
   }
 
   ${BannerFragment}

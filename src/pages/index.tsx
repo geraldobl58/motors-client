@@ -3,8 +3,6 @@ import { QueryHome } from 'graphql/generated/QueryHome'
 
 import Home, { HomeTemplateProps } from 'templates/Home'
 
-import cardMock from 'components/CardSlider/mock'
-
 import { initializeApollo } from 'utils/apollo'
 import { formatPrice } from 'utils/formattedPrice'
 
@@ -16,7 +14,7 @@ export async function getStaticProps() {
   const apolloClient = initializeApollo()
 
   const {
-    data: { banners, recommended }
+    data: { banners, recommended, mostWanted, bestSellers }
   } = await apolloClient.query<QueryHome>({ query: QUERY_HOME })
 
   return {
@@ -42,8 +40,32 @@ export async function getStaticProps() {
         mileage: item.kilometragem?.toFixed(3),
         location: item.localization?.nome
       })),
-      mostSearchedCars: cardMock,
-      bestSellersCars: cardMock
+      mostSearchedCars: mostWanted.map((item) => ({
+        img: item.cover?.url,
+        make: item.make?.nome,
+        slug: item.slug,
+        title: item.titulo,
+        version: item.version?.nome,
+        fuel: item.combustivel,
+        exchange: item.cambio,
+        price: formatPrice(item.preco),
+        year: item.ano,
+        mileage: item.kilometragem?.toFixed(3),
+        location: item.localization?.nome
+      })),
+      bestSellersCars: bestSellers.map((item) => ({
+        img: item.cover?.url,
+        make: item.make?.nome,
+        slug: item.slug,
+        title: item.titulo,
+        version: item.version?.nome,
+        fuel: item.combustivel,
+        exchange: item.cambio,
+        price: formatPrice(item.preco),
+        year: item.ano,
+        mileage: item.kilometragem?.toFixed(3),
+        location: item.localization?.nome
+      }))
     }
   }
 }

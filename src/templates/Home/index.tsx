@@ -24,27 +24,33 @@ const Home = ({
     <BannerSlider items={banners} />
 
     <S.Sections>
-      <Showcase
-        title="Recomendados para você"
-        subtitle="Realize seu sonho e encontre seu veículo ideal"
-        cards={recommended}
-      />
+      {recommended.length > 0 && (
+        <Showcase
+          title="Recomendados para você"
+          subtitle="Realize seu sonho e encontre seu veículo ideal"
+          cards={recommended}
+        />
+      )}
     </S.Sections>
 
     <S.Sections>
-      <Showcase
-        title="Carros mais buscados"
-        subtitle="Confira aqui os carros mais buscados"
-        cards={mostSearchedCars}
-      />
+      {mostSearchedCars.length > 0 && (
+        <Showcase
+          title="Carros mais buscados"
+          subtitle="Confira aqui os carros mais buscados"
+          cards={mostSearchedCars}
+        />
+      )}
     </S.Sections>
 
     <S.Sections>
-      <Showcase
-        title="Os mais vendidos"
-        subtitle="Confira os mais vendidos"
-        cards={bestSellersCars}
-      />
+      {bestSellersCars.length > 0 && (
+        <Showcase
+          title="Os mais vendidos"
+          subtitle="Confira os mais vendidos"
+          cards={bestSellersCars}
+        />
+      )}
     </S.Sections>
 
     <S.Sections>
