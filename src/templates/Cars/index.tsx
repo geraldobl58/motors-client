@@ -1,3 +1,12 @@
+import { useQuery } from '@apollo/client'
+
+import {
+  QueryVehicles,
+  QueryVehiclesVariables
+} from 'graphql/generated/QueryVehicles'
+
+import { QUERY_CARS } from 'graphql/queries/cars'
+
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar'
 import Card, { CardProps } from 'components/Card'
 
@@ -8,13 +17,21 @@ import Base from 'templates/Base'
 import { KeyboardArrowDown as ArrowDown } from '@styled-icons/material-outlined/KeyboardArrowDown'
 
 import * as S from './styles'
+import { formatPrice } from 'utils/formattedPrice'
 
 export type CarsTemplateProps = {
   cars?: CardProps[]
   filterItems: ItemProps[]
 }
 
-const CarsTemplate = ({ cars = [], filterItems }: CarsTemplateProps) => {
+const CarsTemplate = ({ filterItems }: CarsTemplateProps) => {
+  const { data, loading } = useQuery<QueryVehicles, QueryVehiclesVariables>(
+    QUERY_CARS,
+    {
+      variables: { limit: 9 }
+    }
+  )
+
   const handleFilter = () => {
     return
   }
@@ -30,8 +47,19 @@ const CarsTemplate = ({ cars = [], filterItems }: CarsTemplateProps) => {
 
         <section>
           <Grid>
-            {cars.map((item) => (
-              <Card key={item.title} {...item} />
+            {data?.vehicles.map((item) => (
+              <Card
+                key={item.titulo}
+                slug={item.slug}
+                img={item.cover?.url}
+                make={item.make?.nome}
+                fuel={item.combustivel}
+                exchange={item.cambio}
+                price={formatPrice(item.preco)}
+                year={item.ano}
+                mileage={item.kilometragem?.toFixed(3)}
+                location={item.localization?.nome}
+              />
             ))}
           </Grid>
 
