@@ -19,7 +19,7 @@ export type CardProps = {
   exchange: string | null
   price: number | string
   year: string
-  mileage: number
+  mileage: number | string | undefined
   location?: string
   ribbon?: React.ReactNode
   ribbonColor?: RibbonColors

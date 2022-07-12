@@ -25,19 +25,19 @@ export type CarsTemplateProps = {
 }
 
 const CarsTemplate = ({ filterItems }: CarsTemplateProps) => {
-  const { data, loading } = useQuery<QueryVehicles, QueryVehiclesVariables>(
-    QUERY_CARS,
-    {
-      variables: { limit: 9 }
-    }
-  )
+  const { data, loading, fetchMore } = useQuery<
+    QueryVehicles,
+    QueryVehiclesVariables
+  >(QUERY_CARS, {
+    variables: { limit: 9 }
+  })
 
   const handleFilter = () => {
     return
   }
 
-  const handleShoMore = () => {
-    return
+  const handleShowMore = () => {
+    fetchMore({ variables: { limit: 9, start: data?.vehicles.length } })
   }
 
   return (
@@ -61,13 +61,13 @@ const CarsTemplate = ({ filterItems }: CarsTemplateProps) => {
                   exchange={item.cambio}
                   price={formatPrice(item.preco)}
                   year={item.ano}
-                  mileage={Number(item.kilometragem?.toFixed(3))}
+                  mileage={item.kilometragem?.toFixed(3)}
                   location={item.localization?.nome}
                 />
               ))}
             </Grid>
 
-            <S.ShowMore role="button" onClick={handleShoMore}>
+            <S.ShowMore role="button" onClick={handleShowMore}>
               <p>Carregar Mais</p>
               <ArrowDown size={35} />
             </S.ShowMore>

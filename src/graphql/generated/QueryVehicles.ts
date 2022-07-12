@@ -50,4 +50,5 @@ export interface QueryVehicles {
 
 export interface QueryVehiclesVariables {
   limit: number;
+  start?: number | null;
 }

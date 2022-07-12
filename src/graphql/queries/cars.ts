@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const QUERY_CARS = gql`
-  query QueryVehicles($limit: Int!) {
-    vehicles(limit: $limit) {
+  query QueryVehicles($limit: Int!, $start: Int) {
+    vehicles(limit: $limit, start: $start) {
       make {
         nome
       }
