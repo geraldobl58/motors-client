@@ -45,29 +45,33 @@ const CarsTemplate = ({ filterItems }: CarsTemplateProps) => {
       <S.Main>
         <ExploreSidebar items={filterItems} onFilter={handleFilter} />
 
-        <section>
-          <Grid>
-            {data?.vehicles.map((item) => (
-              <Card
-                key={item.titulo}
-                slug={item.slug}
-                img={item.cover?.url}
-                make={item.make?.nome}
-                fuel={item.combustivel}
-                exchange={item.cambio}
-                price={formatPrice(item.preco)}
-                year={item.ano}
-                mileage={item.kilometragem?.toFixed(3)}
-                location={item.localization?.nome}
-              />
-            ))}
-          </Grid>
+        {loading ? (
+          <p>Carregando...</p>
+        ) : (
+          <section>
+            <Grid>
+              {data?.vehicles.map((item) => (
+                <Card
+                  key={item.titulo}
+                  slug={item.slug}
+                  img={item.cover?.url}
+                  make={item.make?.nome}
+                  fuel={item.combustivel}
+                  exchange={item.cambio}
+                  price={formatPrice(item.preco)}
+                  year={item.ano}
+                  mileage={item.kilometragem?.toFixed(3)}
+                  location={item.localization?.nome}
+                />
+              ))}
+            </Grid>
 
-          <S.ShowMore role="button" onClick={handleShoMore}>
-            <p>Carregar Mais</p>
-            <ArrowDown size={35} />
-          </S.ShowMore>
-        </section>
+            <S.ShowMore role="button" onClick={handleShoMore}>
+              <p>Carregar Mais</p>
+              <ArrowDown size={35} />
+            </S.ShowMore>
+          </section>
+        )}
       </S.Main>
     </Base>
   )
