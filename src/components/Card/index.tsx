@@ -12,15 +12,15 @@ import * as S from './styles'
 export type CardProps = {
   slug: string
   img: string
-  make: string
+  make?: string
   title: string
-  version: string
+  version?: string
   fuel: string
-  exchange: string
-  price: number
+  exchange: string | null
+  price: number | string
   year: string
   mileage: number
-  location: string
+  location?: string
   ribbon?: React.ReactNode
   ribbonColor?: RibbonColors
   ribbonSize?: RibbonSizes

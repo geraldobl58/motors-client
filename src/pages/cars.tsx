@@ -16,12 +16,9 @@ export default function Index(props: CarsTemplateProps) {
 }
 
 export async function getStaticProps() {
-  const apollotClient = initializeApollo()
+  const apolloClient = initializeApollo()
 
-  const { data } = await apollotClient.query<
-    QueryVehicles,
-    QueryVehiclesVariables
-  >({
+  await apolloClient.query<QueryVehicles, QueryVehiclesVariables>({
     query: QUERY_CARS,
     variables: { limit: 9 }
   })
@@ -29,19 +26,7 @@ export async function getStaticProps() {
   return {
     props: {
       revalidate: 60,
-      cars: data.vehicles.map((item) => ({
-        slug: item.slug,
-        img: item.cover?.url,
-        make: item.make?.nome,
-        title: item.titulo,
-        version: item.version?.nome,
-        fuel: item.combustivel,
-        exchange: item.cambio,
-        price: formatPrice(item.preco),
-        year: item.ano,
-        mileage: item.kilometragem?.toFixed(3),
-        location: item.localization?.nome
-      })),
+      initialApolloState: apolloClient.cache.extract(),
       filterItems: filterItemMock
     }
   }
