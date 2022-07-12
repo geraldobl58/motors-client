@@ -1,15 +1,7 @@
-import { useQuery } from '@apollo/client'
-
-import {
-  QueryVehicles,
-  QueryVehiclesVariables
-} from 'graphql/generated/QueryVehicles'
-
-import { QUERY_CARS } from 'graphql/queries/cars'
+import { useQueryVehicles } from 'graphql/queries/cars'
 
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar'
 import Card, { CardProps } from 'components/Card'
-
 import { Grid } from 'components/Grid'
 
 import Base from 'templates/Base'
@@ -25,10 +17,7 @@ export type CarsTemplateProps = {
 }
 
 const CarsTemplate = ({ filterItems }: CarsTemplateProps) => {
-  const { data, loading, fetchMore } = useQuery<
-    QueryVehicles,
-    QueryVehiclesVariables
-  >(QUERY_CARS, {
+  const { data, loading, fetchMore } = useQueryVehicles({
     variables: { limit: 9 }
   })
 

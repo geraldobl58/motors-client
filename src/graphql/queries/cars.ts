@@ -1,4 +1,9 @@
-import { gql } from '@apollo/client'
+import { gql, QueryHookOptions, useQuery } from '@apollo/client'
+
+import {
+  QueryVehicles,
+  QueryVehiclesVariables
+} from 'graphql/generated/QueryVehicles'
 
 export const QUERY_CARS = gql`
   query QueryVehicles($limit: Int!, $start: Int) {
@@ -60,3 +65,9 @@ export const QUERY_CAR_BY_SLUG = gql`
     }
   }
 `
+
+export function useQueryVehicles(
+  options?: QueryHookOptions<QueryVehicles, QueryVehiclesVariables>
+) {
+  return useQuery<QueryVehicles, QueryVehiclesVariables>(QUERY_CARS, options)
+}

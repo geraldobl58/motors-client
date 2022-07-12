@@ -1,7 +1,6 @@
 import CarsTemplate, { CarsTemplateProps } from 'templates/Cars'
 
 import { initializeApollo } from 'utils/apollo'
-import { formatPrice } from 'utils/formattedPrice'
 
 import filterItemMock from 'components/ExploreSidebar/mock'
 
