@@ -6,8 +6,8 @@ import {
 } from 'graphql/generated/QueryVehicles'
 
 export const QUERY_CARS = gql`
-  query QueryVehicles($limit: Int!, $start: Int) {
-    vehicles(limit: $limit, start: $start) {
+  query QueryVehicles($limit: Int!, $start: Int, $where: JSON, $sort: String) {
+    vehicles(limit: $limit, start: $start, where: $where, sort: $sort) {
       make {
         nome
       }
