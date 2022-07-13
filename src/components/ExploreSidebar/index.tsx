@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ParsedUrlQueryInput } from 'querystring'
 import xor from 'lodash.xor'
 import { Close } from '@styled-icons/material-outlined/Close'
@@ -39,6 +39,11 @@ const ExploreSidebar = ({
   const [values, setValues] = useState(initialValues)
   const [isOpen, setIsOpen] = useState(false)
 
+  useEffect(() => {
+    onFilter(values)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [values])
+
   const handleRadio = (name: string, value: string | boolean) => {
     setValues((rest) => ({ ...rest, [name]: value }))
   }
@@ -48,8 +53,7 @@ const ExploreSidebar = ({
     setValues((rest) => ({ ...rest, [name]: xor(currentList, [value]) }))
   }
 
-  const handleFilter = () => {
-    onFilter(values)
+  const handleFilterMenu = () => {
     setIsOpen(false)
   }
 
@@ -100,7 +104,7 @@ const ExploreSidebar = ({
       </S.Content>
 
       <S.Footer>
-        <Button fullwidth size="medium" onClick={handleFilter}>
+        <Button fullwidth size="medium" onClick={handleFilterMenu}>
           Buscar
         </Button>
       </S.Footer>

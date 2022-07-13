@@ -58,6 +58,10 @@ export const Items = styled.div`
 export const Footer = styled.div`
   ${({ theme }) => css`
     padding: ${theme.spacings.small};
+
+    ${media.greaterThan('medium')`
+      display: none;
+    `}
   `}
 `
 

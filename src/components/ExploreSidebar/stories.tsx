@@ -6,7 +6,7 @@ import items from './mock'
 export default {
   title: 'ExploreSidebar',
   component: ExploreSidebar,
-  args: { items }
+  args: { items, onFilter: () => console.log('filter') }
 } as Meta
 
 export const Basic: Story<ExploreSidebarProps> = (args) => (
