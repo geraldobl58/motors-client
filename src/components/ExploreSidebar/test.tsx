@@ -1,6 +1,5 @@
 import { screen } from '@testing-library/react'
 import { renderWithTheme } from 'utils/tests/helpers'
-import userEvent from '@testing-library/user-event'
 
 import ExploreSidebar from '.'
 
@@ -47,7 +46,7 @@ describe('<ExploreSidebar />', () => {
     renderWithTheme(
       <ExploreSidebar
         items={items}
-        initialValues={{ ford: true, sort_by: 'low-to-high' }}
+        initialValues={{ category: ['ford', 'fiat'], sort_by: 'low-to-high' }}
         onFilter={jest.fn}
       />
     )
