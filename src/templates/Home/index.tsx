@@ -65,9 +65,9 @@ const Home = ({
       )}
     </S.Sections>
 
-    <S.Sections>
+    {/* <S.Sections>
       <Showcase title="Notícias" subtitle="Confira as últimas notícias" />
-    </S.Sections>
+    </S.Sections> */}
   </Base>
 )
 
