@@ -23,6 +23,7 @@ const CarsTemplate = ({ filterItems }: CarsTemplateProps) => {
   const { push, query } = useRouter()
 
   const { data, loading, fetchMore } = useQueryVehicles({
+    notifyOnNetworkStatusChange: true,
     variables: {
       limit: 9,
       where: parseQueryStringToWhere({ queryString: query, filterItems }),
@@ -53,34 +54,36 @@ const CarsTemplate = ({ filterItems }: CarsTemplateProps) => {
           onFilter={handleFilter}
         />
 
-        {loading ? (
-          <p>Carregando...</p>
-        ) : (
-          <section>
-            <Grid>
-              {data?.vehicles.map((item) => (
-                <Card
-                  key={item.titulo}
-                  slug={item.slug}
-                  img={item.cover!.url}
-                  title={item.titulo}
-                  make={item.make?.nome}
-                  fuel={item.combustivel}
-                  exchange={item.cambio}
-                  price={formatPrice(item.preco)}
-                  year={item.ano}
-                  mileage={item.kilometragem?.toFixed(3)}
-                  location={item.localization?.nome}
-                />
-              ))}
-            </Grid>
+        <section>
+          <Grid>
+            {data?.vehicles.map((item) => (
+              <Card
+                key={item.titulo}
+                slug={item.slug}
+                img={item.cover!.url}
+                title={item.titulo}
+                make={item.make?.nome}
+                fuel={item.combustivel}
+                exchange={item.cambio}
+                price={formatPrice(item.preco)}
+                year={item.ano}
+                mileage={item.kilometragem?.toFixed(3)}
+                location={item.localization?.nome}
+              />
+            ))}
+          </Grid>
 
-            <S.ShowMore role="button" onClick={handleShowMore}>
-              <p>Carregar Mais</p>
-              <ArrowDown size={35} />
-            </S.ShowMore>
-          </section>
-        )}
+          <S.ShowMore>
+            {loading ? (
+              <S.ShowMoreLoading src="/img/dots.svg" />
+            ) : (
+              <S.ShowMoreButton role="button" onClick={handleShowMore}>
+                <p>Carregar Mais</p>
+                <ArrowDown size={35} />
+              </S.ShowMoreButton>
+            )}
+          </S.ShowMore>
+        </section>
       </S.Main>
     </Base>
   )
