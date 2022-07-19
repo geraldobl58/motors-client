@@ -39,3 +39,5 @@ public/workbox-*.js
 
 #storybook
 storybook-static
+
+.env
