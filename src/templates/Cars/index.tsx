@@ -31,6 +31,13 @@ const CarsTemplate = ({ filterItems }: CarsTemplateProps) => {
     }
   })
 
+  if (!data) return <p>Carregando....</p>
+
+  const { vehicles, vehiclesConnection } = data
+
+  const hasMoreGames =
+    vehicles.length < (vehiclesConnection?.values?.length || 0)
+
   const handleFilter = (items: ParsedUrlQueryInput) => {
     push({
       pathname: '/cars',
@@ -73,16 +80,18 @@ const CarsTemplate = ({ filterItems }: CarsTemplateProps) => {
             ))}
           </Grid>
 
-          <S.ShowMore>
-            {loading ? (
-              <S.ShowMoreLoading src="/img/dots.svg" />
-            ) : (
-              <S.ShowMoreButton role="button" onClick={handleShowMore}>
-                <p>Carregar Mais</p>
-                <ArrowDown size={35} />
-              </S.ShowMoreButton>
-            )}
-          </S.ShowMore>
+          {hasMoreGames && (
+            <S.ShowMore>
+              {loading ? (
+                <S.ShowMoreLoading src="/img/dots.svg" />
+              ) : (
+                <S.ShowMoreButton role="button" onClick={handleShowMore}>
+                  <p>Carregar Mais</p>
+                  <ArrowDown size={35} />
+                </S.ShowMoreButton>
+              )}
+            </S.ShowMore>
+          )}
         </section>
       </S.Main>
     </Base>

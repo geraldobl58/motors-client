@@ -44,8 +44,19 @@ export interface QueryVehicles_vehicles {
   localization: QueryVehicles_vehicles_localization | null;
 }
 
+export interface QueryVehicles_vehiclesConnection_values {
+  __typename: "Vehicle";
+  id: string;
+}
+
+export interface QueryVehicles_vehiclesConnection {
+  __typename: "VehicleConnection";
+  values: (QueryVehicles_vehiclesConnection_values | null)[] | null;
+}
+
 export interface QueryVehicles {
   vehicles: QueryVehicles_vehicles[];
+  vehiclesConnection: QueryVehicles_vehiclesConnection | null;
 }
 
 export interface QueryVehiclesVariables {

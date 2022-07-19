@@ -28,6 +28,12 @@ export const QUERY_CARS = gql`
         nome
       }
     }
+
+    vehiclesConnection(where: $where) {
+      values {
+        id
+      }
+    }
   }
 `
 
