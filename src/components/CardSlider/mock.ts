@@ -4,6 +4,7 @@ export default [
       'https://www.autoo.com.br/fotos/2021/11/1280_960/ranger2_26112021_68920_1280_960.jpg',
     make: 'Ford',
     title: 'Territory',
+    slug: 'territory',
     version: '1.5 Ecoboost GTDI',
     fuel: 'Gasolina',
     exchange: 'Autómatico',
@@ -16,7 +17,8 @@ export default [
     img:
       'https://www.autoo.com.br/fotos/2021/11/1280_960/ranger2_26112021_68920_1280_960.jpg',
     make: 'Ford',
-    title: 'Ford Territory',
+    title: 'Territory',
+    slug: 'territory',
     version: '1.5 Ecoboost GTDI',
     fuel: 'Gasolina',
     exchange: 'Autómatico',
@@ -29,7 +31,8 @@ export default [
     img:
       'https://www.autoo.com.br/fotos/2021/11/1280_960/ranger2_26112021_68920_1280_960.jpg',
     make: 'Ford',
-    title: 'Ford Territory',
+    title: 'Territory',
+    slug: 'territory',
     version: '1.5 Ecoboost GTDI',
     fuel: 'Gasolina',
     exchange: 'Autómatico',
@@ -42,7 +45,8 @@ export default [
     img:
       'https://www.autoo.com.br/fotos/2021/11/1280_960/ranger2_26112021_68920_1280_960.jpg',
     make: 'Ford',
-    title: 'Ford Territory',
+    title: 'Territory',
+    slug: 'territory',
     version: '1.5 Ecoboost GTDI',
     fuel: 'Gasolina',
     exchange: 'Autómatico',
@@ -55,7 +59,8 @@ export default [
     img:
       'https://www.autoo.com.br/fotos/2021/11/1280_960/ranger2_26112021_68920_1280_960.jpg',
     make: 'Ford',
-    title: 'Ford Territory',
+    title: 'Territory',
+    slug: 'territory',
     version: '1.5 Ecoboost GTDI',
     fuel: 'Gasolina',
     exchange: 'Autómatico',
@@ -68,7 +73,8 @@ export default [
     img:
       'https://www.autoo.com.br/fotos/2021/11/1280_960/ranger2_26112021_68920_1280_960.jpg',
     make: 'Ford',
-    title: 'Ford Territory',
+    title: 'Territory',
+    slug: 'territory',
     version: '1.5 Ecoboost GTDI',
     fuel: 'Gasolina',
     exchange: 'Autómatico',
