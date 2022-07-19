@@ -1,28 +1,40 @@
+import { useRouter } from 'next/router'
+import { ParsedUrlQueryInput } from 'querystring'
 import { useQueryVehicles } from 'graphql/queries/cars'
 
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar'
-import Card, { CardProps } from 'components/Card'
+import Card from 'components/Card'
 import { Grid } from 'components/Grid'
 
 import Base from 'templates/Base'
 
+import { formatPrice } from 'utils/formattedPrice'
+import { parseQueryStringToFilter, parseQueryStringToWhere } from 'utils/filter'
+
 import { KeyboardArrowDown as ArrowDown } from '@styled-icons/material-outlined/KeyboardArrowDown'
 
 import * as S from './styles'
-import { formatPrice } from 'utils/formattedPrice'
 
 export type CarsTemplateProps = {
-  cars?: CardProps[]
   filterItems: ItemProps[]
 }
 
 const CarsTemplate = ({ filterItems }: CarsTemplateProps) => {
+  const { push, query } = useRouter()
+
   const { data, loading, fetchMore } = useQueryVehicles({
-    variables: { limit: 9 }
+    variables: {
+      limit: 9,
+      where: parseQueryStringToWhere({ queryString: query, filterItems }),
+      sort: query.sort as string | null
+    }
   })
 
-  const handleFilter = () => {
-    return
+  const handleFilter = (items: ParsedUrlQueryInput) => {
+    push({
+      pathname: '/cars',
+      query: items
+    })
   }
 
   const handleShowMore = () => {
@@ -32,7 +44,14 @@ const CarsTemplate = ({ filterItems }: CarsTemplateProps) => {
   return (
     <Base>
       <S.Main>
-        <ExploreSidebar items={filterItems} onFilter={handleFilter} />
+        <ExploreSidebar
+          initialValues={parseQueryStringToFilter({
+            queryString: query,
+            filterItems
+          })}
+          items={filterItems}
+          onFilter={handleFilter}
+        />
 
         {loading ? (
           <p>Carregando...</p>
