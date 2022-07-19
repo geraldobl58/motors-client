@@ -11,7 +11,10 @@ const props = {
   banners: bannersMock,
   recommended: cardMock,
   mostSearchedCars: cardMock,
-  bestSellersCars: cardMock
+  bestSellersCars: cardMock,
+  recommendedTitle: 'Titulo',
+  mostWantedTitle: 'Titulo',
+  bestSellersTitle: 'Titulo'
 }
 
 describe('<Home />', () => {
