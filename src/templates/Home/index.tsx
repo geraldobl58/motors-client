@@ -12,11 +12,11 @@ export type HomeTemplateProps = {
   recommended: CardProps[]
   mostSearchedCars: CardProps[]
   bestSellersCars: CardProps[]
-  recommendedTitle: string
+  recommendedTitle?: string
   recommendedSubTitle?: string
-  mostWantedTitle: string
+  mostWantedTitle?: string
   mostWantedSubTitle?: string
-  bestSellersTitle: string
+  bestSellersTitle?: string
   bestSellersSubTitle?: string
 }
 
