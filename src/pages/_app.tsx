@@ -21,7 +21,7 @@ function App({ Component, pageProps }: AppProps) {
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
         <Head>
-          <title>Motors Web</title>
+          <title>Motors</title>
           <link rel="shortcut icon" href="/img/icon-192.png" />
           <link rel="apple-touch-icon" href="/img/icon-192.png" />
           <link rel="manifest" href="/manifest.json" />
