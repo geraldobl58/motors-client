@@ -1,5 +1,8 @@
 import { AppProps } from 'next/app'
+
 import Head from 'next/head'
+
+import NextNprogress from 'nextjs-progressbar'
 
 import { ApolloProvider } from '@apollo/client'
 
@@ -8,6 +11,7 @@ import { useApollo } from 'utils/apollo'
 import { ThemeProvider } from 'styled-components'
 
 import GlobalStyles from 'styles/global'
+
 import theme from 'styles/theme'
 
 function App({ Component, pageProps }: AppProps) {
@@ -30,6 +34,13 @@ function App({ Component, pageProps }: AppProps) {
           ></link>
         </Head>
         <GlobalStyles />
+        <NextNprogress
+          color="#34ABD0"
+          startPosition={0.3}
+          stopDelayMs={200}
+          height={3}
+          showOnShallow={true}
+        />
         <Component {...pageProps} />
       </ThemeProvider>
     </ApolloProvider>
